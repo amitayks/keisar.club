@@ -1,31 +1,36 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  BrowserRouter,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Contact from "./pages/Contact";
 import OrderForm from "./pages/OrderForm";
+// import PageNotFound from "./pages/PageNotFound";
+import AppLayout from "./ui/AppLayout";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
-    <Router>
-      <div className='flex flex-col min-h-screen'>
-        <Navbar />
-        <main className='flex-grow'>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/products/:id' element={<ProductDetail />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/order' element={<OrderForm />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route index element={<Navigate replace to='/home' />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/products' element={<Products />} />
+          <Route path='/products/:id' element={<ProductDetail />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/order' element={<OrderForm />} />
+        </Route>
+        <Route path='*' element={<PageNotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
