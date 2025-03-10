@@ -1,7 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import useProducts from "./useProducts";
 
-// Featured products data
 const featuredProducts = [
   {
     id: 1,
@@ -30,6 +30,13 @@ const featuredProducts = [
 ];
 
 function FeaturesProducts() {
+  const { isLoading, products, error } = useProducts();
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  console.log(products);
+
   return (
     <section className='py-16'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>

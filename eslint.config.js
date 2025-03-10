@@ -25,5 +25,9 @@ export default tseslint.config(
       ],
     },
     "no-unused-vars": "warn",
+    "no-undef": "warn",
+    "no-unused-imports": "warn",
+    "no-unused-expressions": "warn",
+    "no-unused-labels": "warn",
   }
 );

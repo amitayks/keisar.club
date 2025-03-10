@@ -7,22 +7,29 @@ import Contact from "./pages/Contact";
 import OrderForm from "./pages/OrderForm";
 import AppLayout from "./ui/AppLayout";
 import PageNotFound from "./pages/PageNotFound";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route index path='/' element={<Home />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/products' element={<Products />} />
-          <Route path='/products/:id' element={<ProductDetail />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/order' element={<OrderForm />} />
-        </Route>
-        <Route path='*' element={<PageNotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index path='/' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/products' element={<Products />} />
+            <Route path='/products/:id' element={<ProductDetail />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/order' element={<OrderForm />} />
+          </Route>
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
