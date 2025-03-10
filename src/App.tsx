@@ -10,7 +10,13 @@ import PageNotFound from "./pages/PageNotFound";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 0,
+    },
+  },
+});
 
 function App() {
   return (
@@ -22,7 +28,7 @@ function App() {
             <Route index path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/products' element={<Products />} />
-            <Route path='/products/:id' element={<ProductDetail />} />
+            <Route path='/products/:sku' element={<ProductDetail />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/order' element={<OrderForm />} />
           </Route>

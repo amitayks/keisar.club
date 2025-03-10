@@ -1,38 +1,14 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import useProducts from "./useProducts";
-
-const featuredProducts = [
-  {
-    id: 1,
-    name: "Premium Package",
-    description: "Our most popular comprehensive service package",
-    image:
-      "https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    price: "$299",
-  },
-  {
-    id: 2,
-    name: "Standard Package",
-    description: "Perfect for small to medium projects",
-    image:
-      "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    price: "$199",
-  },
-  {
-    id: 3,
-    name: "Basic Package",
-    description: "Essential services for startups and individuals",
-    image:
-      "https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    price: "$99",
-  },
-];
+import ProductPreview from "./ProductPreview";
+import Spinner from "../ui/Spinner";
+// import ProductPreview from "./ProductPreview";
 
 function FeaturesProducts() {
   const { isLoading, products, error } = useProducts();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
 
   console.log(products);
@@ -50,33 +26,9 @@ function FeaturesProducts() {
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
-          {featuredProducts.map((product) => (
-            <div
-              key={product.id}
-              className='bg-white rounded-lg shadow-md overflow-hidden'
-            >
-              <img
-                src={product.image}
-                alt={product.name}
-                className='w-full h-64 object-cover'
-              />
-              <div className='p-6'>
-                <h3 className='text-xl font-semibold mb-2'>{product.name}</h3>
-                <p className='text-gray-600 mb-4'>{product.description}</p>
-                <div className='flex items-center justify-between'>
-                  <span className='text-2xl font-bold text-indigo-600'>
-                    {product.price}
-                  </span>
-                  <Link
-                    to={`/products/${product.id}`}
-                    className='bg-indigo-600 text-white px-4 py-2 rounded-md font-medium hover:bg-indigo-700 transition-colors'
-                  >
-                    View Details
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
+          {products.map((product, i) =>
+            i < 3 ? <ProductPreview product={product} /> : null
+          )}
         </div>
 
         <div className='text-center mt-12'>

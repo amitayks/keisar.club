@@ -1,183 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ShoppingCart, Check, Info } from 'lucide-react';
-
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft, ShoppingCart, Check, Info } from "lucide-react";
+import useProduct from "../products/useProduct";
+import Spinner from "../ui/Spinner";
 const ProductDetail = () => {
-  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-  
-  // Product data (in a real app, this would come from an API)
-  const products = [
-    {
-      id: 1,
-      name: 'Premium Package',
-      category: 'Premium',
-      description: 'Our most comprehensive service package with all features included',
-      longDescription: 'The Premium Package is our flagship offering, designed for clients who demand the very best. This all-inclusive package provides access to our full suite of services, priority support, and exclusive features not available in other packages. With the Premium Package, you\'ll enjoy faster turnaround times, dedicated account management, and premium materials throughout your project.',
-      features: [
-        'All features from Standard Package',
-        'Priority support with 24/7 availability',
-        'Dedicated account manager',
-        'Unlimited revisions',
-        'Premium materials and finishes',
-        'Extended warranty (3 years)',
-        'Quarterly strategy sessions',
-        'Custom analytics dashboard'
-      ],
-      image: 'https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      additionalImages: [
-        'https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-      ],
-      price: '$299',
-      stock: 'Available',
-      rating: 4.9,
-      reviews: 124
-    },
-    {
-      id: 2,
-      name: 'Standard Package',
-      category: 'Standard',
-      description: 'Perfect for small to medium projects with essential features',
-      longDescription: 'The Standard Package offers an excellent balance of features and value, making it our most popular choice for small to medium-sized projects. This package includes all the essential services needed to successfully complete your project, with room for customization based on your specific requirements.',
-      features: [
-        'All features from Basic Package',
-        'Enhanced project management',
-        'Up to 5 revisions',
-        'High-quality materials',
-        'Standard warranty (1 year)',
-        'Monthly progress reports',
-        'Basic analytics integration'
-      ],
-      image: 'https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      additionalImages: [
-        'https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-      ],
-      price: '$199',
-      stock: 'Available',
-      rating: 4.7,
-      reviews: 89
-    },
-    {
-      id: 3,
-      name: 'Basic Package',
-      category: 'Basic',
-      description: 'Essential services for startups and individuals on a budget',
-      longDescription: 'The Basic Package is designed for startups, small businesses, and individuals who need essential services without breaking the bank. This entry-level package provides the fundamental elements required to get your project off the ground, with the option to upgrade as your needs evolve.',
-      features: [
-        'Core service components',
-        'Standard support (business hours)',
-        'Up to 2 revisions',
-        'Quality standard materials',
-        'Basic warranty (6 months)',
-        'Project completion report'
-      ],
-      image: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      additionalImages: [
-        'https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1607083207685-aaf05f2c908c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-      ],
-      price: '$99',
-      stock: 'Available',
-      rating: 4.5,
-      reviews: 67
-    },
-    {
-      id: 4,
-      name: 'Custom Solution',
-      category: 'Custom',
-      description: 'Tailored solutions designed specifically for your unique needs',
-      longDescription: 'Our Custom Solution is tailored specifically to your unique requirements and challenges. We work closely with you to understand your needs, goals, and constraints, then design a bespoke solution that delivers exactly what you need. This option is ideal for clients with specialized requirements that don\'t fit neatly into our standard packages.',
-      features: [
-        'Completely customized service package',
-        'Dedicated project team',
-        'Unlimited revisions',
-        'Custom materials selection',
-        'Flexible warranty options',
-        'Comprehensive documentation',
-        'Ongoing support options'
-      ],
-      image: 'https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      additionalImages: [
-        'https://images.unsplash.com/photo-1607083207685-aaf05f2c908c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1607083206924-a67672d354a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-      ],
-      price: 'Custom',
-      stock: 'Contact for availability',
-      rating: 4.9,
-      reviews: 42
-    },
-    {
-      id: 5,
-      name: 'Enterprise Package',
-      category: 'Premium',
-      description: 'Comprehensive solutions for large organizations with advanced needs',
-      longDescription: 'The Enterprise Package is designed for large organizations with complex requirements and advanced needs. This comprehensive solution includes all the features of our Premium Package, plus additional enterprise-grade capabilities, scalability options, and integration with your existing systems and processes.',
-      features: [
-        'All features from Premium Package',
-        'Enterprise-grade security',
-        'Advanced API integrations',
-        'Multi-department access',
-        'Customized reporting',
-        'Quarterly business reviews',
-        'Dedicated support team',
-        'Extended warranty (5 years)'
-      ],
-      image: 'https://images.unsplash.com/photo-1607083207685-aaf05f2c908c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      additionalImages: [
-        'https://images.unsplash.com/photo-1607083206924-a67672d354a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-      ],
-      price: '$499',
-      stock: 'Available',
-      rating: 4.8,
-      reviews: 36
-    },
-    {
-      id: 6,
-      name: 'Starter Kit',
-      category: 'Basic',
-      description: 'The perfect starting point for new businesses and projects',
-      longDescription: 'The Starter Kit is the perfect entry point for new businesses and small projects. This streamlined package focuses on the essential elements you need to get started quickly, without unnecessary features or complexity. It\'s designed to be affordable while still delivering professional quality and results.',
-      features: [
-        'Core service essentials',
-        'Email support',
-        'Single revision',
-        'Standard materials',
-        'Basic documentation',
-        'Limited warranty (3 months)'
-      ],
-      image: 'https://images.unsplash.com/photo-1607083206924-a67672d354a0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      additionalImages: [
-        'https://images.unsplash.com/photo-1607082349566-187342175e2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-      ],
-      price: '$79',
-      stock: 'Available',
-      rating: 4.3,
-      reviews: 52
-    }
-  ];
-  
-  const product = products.find(p => p.id === Number(id));
-  const [selectedImage, setSelectedImage] = useState('');
-  
+  const [selectedImage, setSelectedImage] = useState("");
+
+  const { product, isLoading } = useProduct();
+
   useEffect(() => {
     if (product) {
       setSelectedImage(product.image);
     }
   }, [product]);
-  
+
+  if (isLoading) return <Spinner />;
+
+  const additionalImages = [
+    "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+  ];
+
+  // const product = products.at(1);
+
   if (!product) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h2>
-        <p className="text-gray-600 mb-8">The product you're looking for doesn't exist or has been removed.</p>
-        <Link 
-          to="/products" 
-          className="bg-indigo-600 text-white px-4 py-2 rounded-md font-medium hover:bg-indigo-700 transition-colors"
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center'>
+        <h2 className='text-2xl font-bold text-gray-900 mb-4'>
+          Product Not Found
+        </h2>
+        <p className='text-gray-600 mb-8'>
+          The product you're looking for doesn't exist or has been removed.
+        </p>
+        <Link
+          to='/products'
+          className='bg-indigo-600 text-white px-4 py-2 rounded-md font-medium hover:bg-indigo-700 transition-colors'
         >
           Back to Products
         </Link>
@@ -193,61 +52,70 @@ const ProductDetail = () => {
   };
 
   const handleOrder = () => {
-    navigate('/order', { 
-      state: { 
+    navigate("/order", {
+      state: {
         productId: product.id,
         productName: product.name,
-        quantity: quantity
-      } 
+        quantity: quantity,
+      },
     });
   };
 
   return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className='bg-white'>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
         {/* Breadcrumb */}
-        <nav className="flex items-center text-sm font-medium text-gray-500 mb-8">
-          <Link to="/products" className="hover:text-gray-900 flex items-center">
-            <ArrowLeft className="h-4 w-4 mr-1" />
+        <nav className='flex items-center text-sm font-medium text-gray-500 mb-8'>
+          <Link
+            to='/products'
+            className='hover:text-gray-900 flex items-center'
+          >
+            <ArrowLeft className='h-4 w-4 mr-1' />
             Back to Products
           </Link>
         </nav>
 
         {/* Product Details */}
-        <div className="lg:grid lg:grid-cols-2 lg:gap-x-8">
+        <div className='lg:grid lg:grid-cols-2 lg:gap-x-8'>
           {/* Product Images */}
-          <div className="mb-8 lg:mb-0">
-            <div className="overflow-hidden rounded-lg mb-4">
-              <img 
-                src={selectedImage} 
-                alt={product.name} 
-                className="w-full h-96 object-cover"
+          <div className='mb-8 lg:mb-0'>
+            <div className='overflow-hidden rounded-lg mb-4'>
+              <img
+                src={selectedImage}
+                alt={product.name}
+                className='w-full h-96 object-cover'
               />
             </div>
-            
+
             {/* Thumbnail Images */}
-            {product.additionalImages && product.additionalImages.length > 0 && (
-              <div className="grid grid-cols-4 gap-2">
-                <div 
-                  className={`cursor-pointer rounded-md overflow-hidden ${selectedImage === product.image ? 'ring-2 ring-indigo-500' : ''}`}
+            {additionalImages && additionalImages.length > 0 && (
+              <div className='grid grid-cols-4 gap-2'>
+                <div
+                  className={`cursor-pointer rounded-md overflow-hidden ${
+                    selectedImage === product.image
+                      ? "ring-2 ring-indigo-500"
+                      : ""
+                  }`}
                   onClick={() => setSelectedImage(product.image)}
                 >
-                  <img 
-                    src={product.image} 
-                    alt={`${product.name} thumbnail`} 
-                    className="w-full h-20 object-cover"
+                  <img
+                    src={product.image}
+                    alt={`${product.name} thumbnail`}
+                    className='w-full h-20 object-cover'
                   />
                 </div>
-                {product.additionalImages.map((image, index) => (
-                  <div 
+                {additionalImages.map((image, index) => (
+                  <div
                     key={index}
-                    className={`cursor-pointer rounded-md overflow-hidden ${selectedImage === image ? 'ring-2 ring-indigo-500' : ''}`}
+                    className={`cursor-pointer rounded-md overflow-hidden ${
+                      selectedImage === image ? "ring-2 ring-indigo-500" : ""
+                    }`}
                     onClick={() => setSelectedImage(image)}
                   >
-                    <img 
-                      src={image} 
-                      alt={`${product.name} thumbnail ${index + 1}`} 
-                      className="w-full h-20 object-cover"
+                    <img
+                      src={image}
+                      alt={`${product.name} thumbnail ${index + 1}`}
+                      className='w-full h-20 object-cover'
                     />
                   </div>
                 ))}
@@ -257,114 +125,138 @@ const ProductDetail = () => {
 
           {/* Product Info */}
           <div>
-            <div className="mb-2">
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
+            <div className='mb-2'>
+              <span className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800'>
                 {product.category}
               </span>
             </div>
-            <h1 className="text-3xl font-extrabold text-gray-900 mb-2">{product.name}</h1>
-            
+            <h1 className='text-3xl font-extrabold text-gray-900 mb-2'>
+              {product.name}
+            </h1>
+
             {/* Price and Rating */}
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-3xl font-bold text-indigo-600">{product.price}</p>
-              <div className="flex items-center">
-                <div className="flex items-center">
+            <div className='flex items-center justify-between mb-4'>
+              <p className='text-3xl font-bold text-indigo-600'>
+                {product.price}
+              </p>
+              <div className='flex items-center'>
+                <div className='flex items-center'>
                   {[...Array(5)].map((_, i) => (
-                    <svg 
+                    <svg
                       key={i}
-                      className={`h-5 w-5 ${i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-300'}`}
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+                      className={`h-5 w-5 ${
+                        i < Math.floor(product.rating)
+                          ? "text-yellow-400"
+                          : "text-gray-300"
+                      }`}
+                      fill='currentColor'
+                      viewBox='0 0 20 20'
                     >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      <path d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z' />
                     </svg>
                   ))}
                 </div>
-                <span className="ml-2 text-sm text-gray-600">
+                <span className='ml-2 text-sm text-gray-600'>
                   {product.rating} ({product.reviews} reviews)
                 </span>
               </div>
             </div>
-            
+
             {/* Availability */}
-            <div className="flex items-center mb-6">
-              <div className={`h-3 w-3 rounded-full ${product.stock === 'Available' ? 'bg-green-500' : 'bg-yellow-500'} mr-2`}></div>
-              <span className="text-sm font-medium text-gray-700">{product.stock}</span>
+            <div className='flex items-center mb-6'>
+              <div
+                className={`h-3 w-3 rounded-full ${
+                  product.stock === "Available"
+                    ? "bg-green-500"
+                    : "bg-yellow-500"
+                } mr-2`}
+              ></div>
+              <span className='text-sm font-medium text-gray-700'>
+                {product.stock}
+              </span>
             </div>
-            
+
             {/* Description */}
-            <div className="mb-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">Description</h2>
-              <p className="text-gray-600">{product.longDescription}</p>
+            <div className='mb-6'>
+              <h2 className='text-lg font-semibold text-gray-900 mb-2'>
+                Description
+              </h2>
+              <p className='text-gray-600'>{product.longDescription}</p>
             </div>
-            
+
             {/* Features */}
-            <div className="mb-8">
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">Features</h2>
-              <ul className="space-y-2">
-                {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-start">
-                    <Check className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-600">{feature}</span>
+            <div className='mb-8'>
+              <h2 className='text-lg font-semibold text-gray-900 mb-2'>
+                Features
+              </h2>
+              {/* <ul className='space-y-2'>
+                {product.features.map((feature: string, index: number) => (
+                  <li key={index} className='flex items-start'>
+                    <Check className='h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5' />
+                    <span className='text-gray-600'>{feature}</span>
                   </li>
                 ))}
-              </ul>
+              </ul> */}
             </div>
-            
+
             {/* Order Form */}
-            <div className="border-t border-gray-200 pt-6">
-              <div className="flex items-center mb-4">
-                <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mr-4">
+            <div className='border-t border-gray-200 pt-6'>
+              <div className='flex items-center mb-4'>
+                <label
+                  htmlFor='quantity'
+                  className='block text-sm font-medium text-gray-700 mr-4'
+                >
                   Quantity
                 </label>
-                <div className="flex items-center">
+                <div className='flex items-center'>
                   <button
-                    type="button"
+                    type='button'
                     onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-                    className="p-2 border border-gray-300 rounded-l-md bg-gray-50 text-gray-500 hover:bg-gray-100"
+                    className='p-2 border border-gray-300 rounded-l-md bg-gray-50 text-gray-500 hover:bg-gray-100'
                   >
                     -
                   </button>
                   <input
-                    type="number"
-                    id="quantity"
-                    name="quantity"
-                    min="1"
+                    type='number'
+                    id='quantity'
+                    name='quantity'
+                    min='1'
                     value={quantity}
                     onChange={handleQuantityChange}
-                    className="p-2 w-16 border-t border-b border-gray-300 text-center focus:ring-indigo-500 focus:border-indigo-500"
+                    className='p-2 w-16 border-t border-b border-gray-300 text-center focus:ring-indigo-500 focus:border-indigo-500'
                   />
                   <button
-                    type="button"
+                    type='button'
                     onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 border border-gray-300 rounded-r-md bg-gray-50 text-gray-500 hover:bg-gray-100"
+                    className='p-2 border border-gray-300 rounded-r-md bg-gray-50 text-gray-500 hover:bg-gray-100'
                   >
                     +
                   </button>
                 </div>
               </div>
-              
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+
+              <div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4'>
                 <button
-                  type="button"
+                  type='button'
                   onClick={handleOrder}
-                  className="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-md font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center"
+                  className='flex-1 bg-indigo-600 text-white px-6 py-3 rounded-md font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center'
                 >
-                  <ShoppingCart className="h-5 w-5 mr-2" />
+                  <ShoppingCart className='h-5 w-5 mr-2' />
                   Order Now
                 </button>
                 <Link
-                  to="/contact"
-                  className="flex-1 bg-gray-100 text-gray-800 px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors flex items-center justify-center"
+                  to='/contact'
+                  className='flex-1 bg-gray-100 text-gray-800 px-6 py-3 rounded-md font-medium hover:bg-gray-200 transition-colors flex items-center justify-center'
                 >
-                  <Info className="h-5 w-5 mr-2" />
+                  <Info className='h-5 w-5 mr-2' />
                   Ask a Question
                 </Link>
               </div>
-              
-              <p className="mt-4 text-sm text-gray-500 flex items-center">
-                <Info className="h-4 w-4 mr-1" />
-                For custom requirements or bulk orders, please contact us directly.
+
+              <p className='mt-4 text-sm text-gray-500 flex items-center'>
+                <Info className='h-4 w-4 mr-1' />
+                For custom requirements or bulk orders, please contact us
+                directly.
               </p>
             </div>
           </div>
