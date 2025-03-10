@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "powershell Copy-Item -Path dist/index.html -Destination dist/404.html; gh-pages -d dist"
+    "deploy": "powershell Copy-Item -Path dist/index.html -Destination dist/404.html; gh-pages -d dist",
+    "bnd": "npm run build && npm run deploy"
   },
   "dependencies": {
     "emailjs-com": "^3.2.0",
