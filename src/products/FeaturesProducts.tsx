@@ -6,12 +6,9 @@ import Spinner from "../ui/Spinner";
 // import ProductPreview from "./ProductPreview";
 
 function FeaturesProducts() {
-  const { isLoading, products, error } = useProducts();
+  const { isLoading, products } = useProducts();
 
   if (isLoading) return <Spinner />;
-  if (error) return <p>Error: {error.message}</p>;
-
-  console.log(products);
 
   return (
     <section className='py-16'>
