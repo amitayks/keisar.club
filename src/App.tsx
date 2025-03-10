@@ -1,17 +1,10 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  BrowserRouter,
-} from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Contact from "./pages/Contact";
 import OrderForm from "./pages/OrderForm";
-// import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./ui/AppLayout";
 import PageNotFound from "./pages/PageNotFound";
 
