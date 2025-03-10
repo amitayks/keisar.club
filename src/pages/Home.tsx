@@ -1,7 +1,7 @@
-import HeroSection from "../components/HeroSection";
-import FeaturesSection from "../components/FeaturesSection";
-import FeaturesProducts from "../components/FeaturesProducts";
-import CTASection from "../components/CTASection";
+import HeroSection from "../ui/HeroSection";
+import FeaturesSection from "../ui/FeaturesSection";
+import FeaturesProducts from "../ui/FeaturesProducts";
+import CTASection from "../ui/CTASection";
 
 const Home = () => {
   return (
