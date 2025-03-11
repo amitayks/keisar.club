@@ -9,7 +9,7 @@ function DesktopNavBar() {
         <div className='flex justify-between h-16'>
           <div className='hidden md:flex items-center'>
             <Link to='/' className='flex-shrink-0 flex items-center'>
-              <Logo width={40} height={40} fill='black' />
+              {/* <Logo width={40} height={40} fill='black' /> */}
               <span className='ml-2 text-xl font-bold text-gray-900 '>
                 Keisar Club
               </span>

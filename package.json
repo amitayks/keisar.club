@@ -12,15 +12,20 @@
     "bnd": "npm run build && npm run deploy"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.2",
     "@supabase/supabase-js": "^2.49.1",
     "@tanstack/react-query": "^5.67.2",
     "@tanstack/react-query-devtools": "^5.67.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "emailjs-com": "^3.2.0",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "tailwind-merge": "^3.0.2",
+    "tailwind-variants": "^1.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",

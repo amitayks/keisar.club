@@ -1,4 +1,6 @@
 import { differenceInDays, formatDistance, parseISO } from "date-fns";
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 // We want to make this function work for both Date objects and strings (which come from Supabase)
 export const subtractDates = (dateStr1: string, dateStr2: string) => {
@@ -34,3 +36,7 @@ export const formatCurrency = (value: number) => {
     currency: "ILS",
   }).format(value);
 };
+
+export function cn(...inputs: (string | undefined)[]) {
+  return twMerge(clsx(inputs));
+}
