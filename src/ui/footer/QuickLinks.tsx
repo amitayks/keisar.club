@@ -1,42 +1,17 @@
-import { Link } from "react-router-dom";
+import QuickLinkTab from "./QuickLinkTab";
 
 function QuickLinks() {
   return (
     <div>
-      <h3 className='text-lg font-semibold mb-4'>Quick Links</h3>
-      <ul className='space-y-2'>
-        <li>
-          <Link
-            to='/'
-            className='text-gray-400 hover:text-white transition-colors'
-          >
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link
-            to='/about'
-            className='text-gray-400 hover:text-white transition-colors'
-          >
-            About Us
-          </Link>
-        </li>
-        <li>
-          <Link
-            to='/products'
-            className='text-gray-400 hover:text-white transition-colors'
-          >
-            Products
-          </Link>
-        </li>
-        <li>
-          <Link
-            to='/contact'
-            className='text-gray-400 hover:text-white transition-colors'
-          >
-            Contact
-          </Link>
-        </li>
+      <div className='flex items-center justify-center'>
+        <h3 className='flex text-lg font-semibold'>Site Map</h3>
+      </div>
+
+      <ul className='flex flex-col space-y-2 mt-2'>
+        <QuickLinkTab link='/' input='Home' />
+        <QuickLinkTab link='/about' input='About Us' />
+        <QuickLinkTab link='/products' input='Products' />
+        <QuickLinkTab link='/contact' input='Contact' />
       </ul>
     </div>
   );
