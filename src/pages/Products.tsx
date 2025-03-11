@@ -9,7 +9,18 @@ const Products = () => {
   const { products, isLoading } = useProducts();
   const moveBack = useMoveBack();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <>
+        <ProductIntro />
+        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center'>
+          <h3 className='text-xl font-medium text-gray-900 mb-4'>
+            Uur products are loading...
+          </h3>
+        </div>
+        <Spinner />
+      </>
+    );
 
   return (
     <div>

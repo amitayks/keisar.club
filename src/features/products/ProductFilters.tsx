@@ -48,8 +48,8 @@ function ProductFilters(products: any) {
 
           {/* Category Filter */}
           <div className='flex items-center space-x-2'>
-            <Filter className='h-5 w-5 text-gray-400' />
-            <span className='text-sm text-gray-600'>Filter by:</span>
+            {/* <Filter className='h-5 w-5 text-gray-400' /> */}
+            {/* <span className='text-sm text-gray-600'>Filter by:</span> */}
             <div className='flex flex-wrap gap-2'>
               {categories.map((category) => (
                 <button
