@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProductById } from "../services/apiProduct";
+import { getProductById } from "../../services/apiProduct";
 import { useParams } from "react-router-dom";
 
 const useProduct = () => {
@@ -21,7 +21,7 @@ const useProduct = () => {
     // refetchOnWindowFocus: true,
   });
 
-  console.log(error);
+  if (error) console.log(error);
 
   return { error, isLoading, product };
 };

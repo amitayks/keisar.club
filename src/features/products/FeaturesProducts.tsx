@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import useProducts from "./useProducts";
 import ProductPreview from "./ProductPreview";
-import Spinner from "../ui/Spinner";
+import Spinner from "../../ui/Spinner";
 // import ProductPreview from "./ProductPreview";
 
 function FeaturesProducts() {

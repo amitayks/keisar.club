@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../services/apiProduct";
+import { getProducts } from "../../services/apiProduct";
 
 const useProducts = () => {
   const {
@@ -11,7 +11,7 @@ const useProducts = () => {
     queryFn: () => getProducts(),
   });
 
-  console.log(error);
+  if (error) console.log(error);
 
   return { error, isLoading, products };
 };

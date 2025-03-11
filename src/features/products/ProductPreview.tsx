@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { formatCurrency } from "../utils/helpers";
+import { formatCurrency } from "../../utils/helpers";
 type Product = {
   id: string;
   SKU: string;
@@ -11,13 +11,21 @@ type Product = {
 };
 
 function ProductPreview({ product }: { product: Product }) {
+  // const handleClick = () => {
+  //   sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+  // };
+
   return (
     <div
       key={product.id}
       // className='bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105'
       className='bg-white rounded-lg shadow-md overflow-hidden transition-transform'
     >
-      <Link to={`/products/${product.SKU}`}>
+      <Link
+        to={`/products/${product.SKU}`}
+        state={{ preserveScroll: true }}
+        // onClick={handleClick}
+      >
         <img
           src={product.image}
           alt={product.name}

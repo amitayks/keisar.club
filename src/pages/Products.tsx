@@ -1,8 +1,8 @@
-import useProducts from "../products/useProducts";
+import useProducts from "../features/products/useProducts";
 import Spinner from "../ui/Spinner";
-import ProductIntro from "../products/ProductIntro";
-import ProductFilters from "../products/ProductFilters";
-import ProductPreview from "../products/ProductPreview";
+import ProductIntro from "../features/products/ProductIntro";
+import ProductFilters from "../features/products/ProductFilters";
+import ProductPreview from "../features/products/ProductPreview";
 import { useMoveBack } from "../hooks/useMoveBack";
 
 const Products = () => {

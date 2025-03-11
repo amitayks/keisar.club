@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ShoppingCart, Check, Info } from "lucide-react";
-import useProduct from "../products/useProduct";
+import useProduct from "../features/products/useProduct";
 import Spinner from "../ui/Spinner";
 const ProductDetail = () => {
   const navigate = useNavigate();
