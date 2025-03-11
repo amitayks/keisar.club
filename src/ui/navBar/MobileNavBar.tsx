@@ -1,7 +1,7 @@
 import HeaderTab from "./HeaderTab";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import Logo from "./logo/Logo";
+import Logo from "../logo/Logo";
 import { useState } from "react";
 import MenuButton from "./MenuButton";
 
@@ -14,7 +14,7 @@ function MobileNavBar() {
         <div className='flex justify-between h-16'>
           <div className='flex justify-between w-full'>
             <Link to='/' className='flex-shrink-0 flex items-center space-x-3'>
-              <Logo width={40} height={40} />
+              <Logo width={40} height={40} fill='black' />
               <span className='text-xl font-bold text-gray-900'>
                 Keisar Club
               </span>
