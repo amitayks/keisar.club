@@ -57,6 +57,12 @@ function MobileNavBar() {
             onClick={() => setIsOpen(false)}
           />
           <HeaderTab
+            to='/portfolio'
+            className='mobile'
+            input='Portfolio'
+            onClick={() => setIsOpen(false)}
+          />
+          <HeaderTab
             to='/order'
             className='mobileOrder'
             input='Order Now'

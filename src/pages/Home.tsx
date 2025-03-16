@@ -1,5 +1,5 @@
 import HeroSection from "../ui/HeroSection";
-import FeaturesSection from "../ui/FeaturesSection";
+import FeaturesSection from "../ui/FeaturesPortfolio";
 import FeaturesProducts from "../features/products/FeaturesProducts";
 import CTASection from "../ui/CTASection";
 
@@ -13,12 +13,26 @@ const Home = () => {
       <FeaturesSection />
       <FeaturesProducts />
       <CTASection />
+
+      {/* /////////////////////////////////// */}
       <Card className='p-6 max-w-xl mx-auto'>
+        <div className='flex flex-wrap'>
+          <div className='w-1/2 p-2'>
+            <Skeleton className='h-4 w-full mb-2' />
+            <Skeleton className='h-4 w-full mb-2' />
+            <Skeleton className='h-6 w-full mb-4 ' />
+          </div>
+          <div className='w-1/2 p-2'>
+            <Skeleton className='h-60 w-full' />
+          </div>
+        </div>
+      </Card>
+      {/* <Card className='p-6 max-w-xl mx-auto'>
         <Skeleton className='h-6 w-1/2 mb-4' />
         <Skeleton className='h-4 w-full mb-2' />
         <Skeleton className='h-4 w-full mb-2' />
         <Skeleton className='h-60 w-full' />
-      </Card>
+      </Card> */}
     </div>
   );
 };

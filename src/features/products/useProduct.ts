@@ -3,7 +3,7 @@ import { getProductById } from "../../services/apiProduct";
 import { useParams } from "react-router-dom";
 
 const useProduct = () => {
-  const { sku } = useParams<{ sku: string }>();
+  const { SKU } = useParams<{ SKU: string }>();
 
   const {
     error,
@@ -12,8 +12,8 @@ const useProduct = () => {
   } = useQuery({
     queryKey: ["product"],
     queryFn: () => {
-      if (!sku) throw new Error("SKU is required");
-      return getProductById(sku);
+      if (!SKU) throw new Error("SKU is required");
+      return getProductById(SKU);
     },
     // retry: false,
     // staleTime: 0,

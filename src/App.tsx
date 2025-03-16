@@ -1,4 +1,8 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import ScrollToTop from "./ui/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Products from "./pages/Products";
@@ -7,9 +11,9 @@ import Contact from "./pages/Contact";
 import OrderForm from "./pages/OrderForm";
 import AppLayout from "./ui/AppLayout";
 import PageNotFound from "./pages/PageNotFound";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ScrollToTop from "./ui/ScrollToTop";
+import OrderDetail from "./pages/OrderDetail";
+import Portfolio from "./pages/Portfolio";
+import PortfolioItem from "./features/portfolio/PortfolioItem";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,9 +34,12 @@ function App() {
             <Route index path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/products' element={<Products />} />
-            <Route path='/products/:sku' element={<ProductDetail />} />
+            <Route path='/products/:SKU' element={<ProductDetail />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/order' element={<OrderForm />} />
+            <Route path='/order/:id' element={<OrderDetail />} />
+            <Route path='/portfolio' element={<Portfolio />} />
+            <Route path='/portfolio/:SKU' element={<PortfolioItem />} />
           </Route>
           <Route path='*' element={<PageNotFound />} />
         </Routes>

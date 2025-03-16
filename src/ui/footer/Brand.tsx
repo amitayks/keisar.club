@@ -4,14 +4,14 @@ function Brand() {
   return (
     <div>
       <div className='flex items-center justify-center'>
-        {/* <LogoRoundOutline
+        <LogoRoundOutline
           height={32}
           width={32}
           fill='white'
           circleFill='none'
           circleStroke='white'
           circleStrokeWidth='0.415782mm'
-        /> */}
+        />
         <span className='ml-2 text-xl font-bold'>Keisar Club</span>
       </div>
       <p className='mt-2 text-gray-400 text-center text-sm ' dir='rtl'>

@@ -1,19 +1,19 @@
 import supabase from "./supabase";
 
-export const getProducts = async () => {
+export const getPortfolio = async () => {
   const { data, error } = await supabase
-    .from("products")
+    .from("portfolio")
     .select("*")
     .eq("publish", true);
   if (error) throw error;
   return data;
 };
 
-export const getProductById = async (sku: string) => {
+export const getPortfolioById = async (SKU: string) => {
   const { data, error } = await supabase
-    .from("products")
+    .from("portfolio")
     .select("*")
-    .eq("SKU", sku)
+    .eq("SKU", SKU)
     .single();
   if (error) throw error;
   return data;
