@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import usePortfolio from "./usePortfolio";
-import { Skeleton } from "../../ui/Skeleton";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
+import { Card } from "../../ui/skeleton/Card";
 
-type Portfolio = {
+interface Portfolio {
   id: string;
   title: string;
   content: string;
@@ -10,7 +11,7 @@ type Portfolio = {
   SKU: string;
   category: string;
   description: string;
-};
+}
 
 function PortfolioPreview() {
   const { portfolio, isLoading } = usePortfolio();
@@ -19,7 +20,14 @@ function PortfolioPreview() {
   // };
 
   if (isLoading) {
-    return <Skeleton className='h-60 w-full' />;
+    return (
+      <Card className='p-6 max-w-xl mx-auto'>
+        <Skeleton className='h-6 w-1/2 mb-4' />
+        <Skeleton className='h-4 w-full mb-2' />
+        <Skeleton className='h-4 w-full mb-2' />
+        <Skeleton className='h-60 w-full' />
+      </Card>
+    );
   }
 
   return (

@@ -1,5 +1,5 @@
-import { Card } from "../../ui/Card";
-import { Skeleton } from "../../ui/Skeleton";
+import { Card } from "../../ui/skeleton/Card";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
 import usePortfolioItem from "./usePortfolioItem";
 // import { Button } from '../../ui/Button';
 

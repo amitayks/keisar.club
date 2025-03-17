@@ -1,34 +1,19 @@
-import { Skeleton } from "../ui/Skeleton";
-import { Card } from "../ui/Card";
+import { Skeleton } from "../ui/skeleton/Skeleton";
+import { Card } from "../ui/skeleton/Card";
 import usePortfolio from "../features/portfolio/usePortfolio";
 import PortfolioPreview from "../features/portfolio/PortfolioPreview";
 
-interface Portfolio {
-  id: string;
-  title: string;
-  content: string;
-  images: string[];
-  SKU: string;
-  category: string;
-  description: string;
-}
+// interface Portfolio {
+//   id: string;
+//   title: string;
+//   content: string;
+//   images: string[];
+//   SKU: string;
+//   category: string;
+//   description: string;
+// }
 
 function Portfolio() {
-  const { portfolio, isLoading } = usePortfolio();
-
-  console.log(portfolio);
-
-  if (isLoading) {
-    return (
-      <Card className='p-6 max-w-xl mx-auto'>
-        <Skeleton className='h-6 w-1/2 mb-4' />
-        <Skeleton className='h-4 w-full mb-2' />
-        <Skeleton className='h-4 w-full mb-2' />
-        <Skeleton className='h-60 w-full' />
-      </Card>
-    );
-  }
-
   return (
     <section className='py-16'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -42,11 +27,12 @@ function Portfolio() {
           </p>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+        <PortfolioPreview />
+        {/* <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           {portfolio.map((portfolio) => (
-            <PortfolioPreview portfolio={portfolio} />
+            <PortfolioPreview key={portfolio.id} portfolio={portfolio} />
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
 
