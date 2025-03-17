@@ -1,10 +1,9 @@
 import useProducts from "../features/products/useProducts";
-import Spinner from "../ui/Spinner";
 import ProductIntro from "../features/products/ProductIntro";
 import ProductFilters from "../features/products/ProductFilters";
 import ProductPreview from "../features/products/ProductPreview";
 import { useMoveBack } from "../hooks/useMoveBack";
-
+import ProductItemSkeleton from "../ui/skeleton/ProductItemSkeleton";
 const Products = () => {
   const { products, isLoading } = useProducts();
   const moveBack = useMoveBack();
@@ -18,7 +17,7 @@ const Products = () => {
             Uur products are loading...
           </h3>
         </div>
-        <Spinner />
+        <ProductItemSkeleton />
       </>
     );
 
@@ -34,7 +33,7 @@ const Products = () => {
       <section className='py-12 bg-gray-50'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           {products.length > 0 ? (
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+            <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8'>
               {products.map((product) => (
                 <ProductPreview product={product} />
               ))}

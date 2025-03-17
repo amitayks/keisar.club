@@ -32,22 +32,23 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <ScrollToTop />
-        {/* <Suspense fallback={<HomeLoadingSkeleton />}> */}
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/products/:SKU' element={<ProductDetail />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/order' element={<OrderForm />} />
-            <Route path='/order/:id' element={<OrderDetail />} />
-            <Route path='/portfolio' element={<Portfolio />} />
-            <Route path='/portfolio/:SKU' element={<PortfolioItem />} />
-          </Route>
-          <Route path='*' element={<PageNotFound />} />
-        </Routes>
-        {/* </Suspense> */}
+        <Suspense fallback={<HomeLoadingSkeleton />}>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index path='/' element={<Home />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/products' element={<Products />} />
+              <Route path='/products/:SKU' element={<ProductDetail />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/order' element={<OrderForm />} />
+              <Route path='/order/:id' element={<OrderDetail />} />
+              <Route path='/portfolio' element={<Portfolio />} />
+              <Route path='/portfolio/:SKU' element={<PortfolioItem />} />
+              <Route path='/skeleton' element={<HomeLoadingSkeleton />} />
+            </Route>
+            <Route path='*' element={<PageNotFound />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </QueryClientProvider>
   );

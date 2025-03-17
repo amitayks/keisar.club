@@ -2,13 +2,12 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import useProducts from "./useProducts";
 import ProductPreview from "./ProductPreview";
-import Spinner from "../../ui/Spinner";
-// import ProductPreview from "./ProductPreview";
+import ProductItemSkeleton from "../../ui/skeleton/ProductItemSkeleton";
 
 function FeaturesProducts() {
   const { isLoading, products } = useProducts();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <ProductItemSkeleton />;
 
   return (
     <section className='py-16 bg-white'>

@@ -5,7 +5,7 @@ const useSiteImage = (imageName: string) => {
   const { data, error, isLoading } = useQuery({
     queryKey: ["image", imageName],
     queryFn: () => getSiteImage(imageName),
-    retry: false,
+    // retry: false,
   });
 
   if (error) console.log(error);

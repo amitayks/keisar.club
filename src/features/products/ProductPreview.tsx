@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../../utils/helpers";
 import { useProductImage } from "./useProductImage";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
 
 type Product = {
   id: string;
@@ -14,9 +15,6 @@ type Product = {
 
 function ProductPreview({ product }: { product: Product }) {
   const { imageData, isLoading } = useProductImage(product.image);
-  // const handleClick = () => {
-  //   sessionStorage.setItem("scrollPosition", window.scrollY.toString());
-  // };
 
   return (
     <div
@@ -31,8 +29,8 @@ function ProductPreview({ product }: { product: Product }) {
         // onClick={handleClick}
       >
         {isLoading ? (
-          <div className='w-full h-70 object-cover'>
-            <div className='w-full h-full bg-stone-200 animate-pulse'></div>
+          <div className='aspect-square w-full'>
+            <Skeleton className='w-full h-full object-cover' />
           </div>
         ) : (
           <img

@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ShoppingCart, Check, Info } from "lucide-react";
+import { ArrowLeft, ShoppingCart, Info } from "lucide-react";
 import useProduct from "../features/products/useProduct";
 import Spinner from "../ui/Spinner";
+
 const ProductDetail = () => {
   const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
-  const [selectedImage, setSelectedImage] = useState("");
-
-  const { product, isLoading } = useProduct();
+  const [selectedImage, setSelectedImage] = useState<string | undefined>(
+    undefined
+  );
+  const { product, isLoadingImage, isLoadingProduct, imageUrl } = useProduct();
 
   useEffect(() => {
-    if (product) {
-      setSelectedImage(product.image);
+    if (imageUrl) {
+      setSelectedImage(imageUrl);
     }
-  }, [product]);
-
-  if (isLoading) return <Spinner />;
+  }, [imageUrl]);
 
   const additionalImages = [
     "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     "https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
   ];
 
-  // const product = products.at(1);
+  if (isLoadingImage) return <Spinner />;
 
   if (!product) {
     return (
@@ -83,7 +83,7 @@ const ProductDetail = () => {
               <img
                 src={selectedImage}
                 alt={product.name}
-                className='w-full h-96 object-cover'
+                className='w-full h-auto object-cover'
               />
             </div>
 
@@ -92,14 +92,12 @@ const ProductDetail = () => {
               <div className='grid grid-cols-4 gap-2'>
                 <div
                   className={`cursor-pointer rounded-md overflow-hidden ${
-                    selectedImage === product.image
-                      ? "ring-2 ring-indigo-500"
-                      : ""
+                    selectedImage === imageUrl ? "ring-2 ring-indigo-500" : ""
                   }`}
-                  onClick={() => setSelectedImage(product.image)}
+                  onClick={() => setSelectedImage(imageUrl)}
                 >
                   <img
-                    src={product.image}
+                    src={imageUrl}
                     alt={`${product.name} thumbnail`}
                     className='w-full h-20 object-cover'
                   />
