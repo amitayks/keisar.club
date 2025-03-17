@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../../utils/helpers";
+import { useProductImage } from "./useProductImage";
+
 type Product = {
   id: string;
   SKU: string;
@@ -11,6 +13,7 @@ type Product = {
 };
 
 function ProductPreview({ product }: { product: Product }) {
+  const { imageData, isLoading } = useProductImage(product.image);
   // const handleClick = () => {
   //   sessionStorage.setItem("scrollPosition", window.scrollY.toString());
   // };
@@ -27,12 +30,18 @@ function ProductPreview({ product }: { product: Product }) {
         className='flex flex-col h-full'
         // onClick={handleClick}
       >
-        <img
-          src={product.image}
-          alt={product.name}
-          // className='w-full h-64 object-cover'
-          className='w-full h-70 object-cover'
-        />
+        {isLoading ? (
+          <div className='w-full h-70 object-cover'>
+            <div className='w-full h-full bg-stone-200 animate-pulse'></div>
+          </div>
+        ) : (
+          <img
+            src={imageData}
+            alt={product.name}
+            // className='w-full h-64 object-cover'
+            className='w-full h-70 object-cover'
+          />
+        )}
         <div className='p-6 flex flex-col flex-grow'>
           <CategoryTag cat={product.category} />
 

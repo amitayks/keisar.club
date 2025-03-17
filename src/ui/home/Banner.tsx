@@ -1,18 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-import useGetImage from "../../hooks/useGetImage";
+import { useSiteImage } from "../../hooks/useSiteImages";
 import DesktopBannerSkeleton from "./DesktopBannerSkeleton";
 import MobileBannerSkeleton from "./MobileBannerSkeleton";
 
 function Banner() {
-  const { data: backgroundImage, isLoading: isLoadingBackground } = useGetImage(
-    "wood-background.jpg"
-  );
+  const { data: backgroundImage, isLoading: isLoadingBackground } =
+    useSiteImage("wood-background.jpg");
   const { data: bannerImageMobile, isLoading: isLoadingBannerMobile } =
-    useGetImage("banner-mobile.png");
+    useSiteImage("banner-mobile.png");
   const { data: bannerImageDesktop, isLoading: isLoadingBannerDesktop } =
-    useGetImage("banner-desktop.png");
+    useSiteImage("banner-desktop.png");
 
   if (isLoadingBackground || isLoadingBannerMobile || isLoadingBannerDesktop)
     return (

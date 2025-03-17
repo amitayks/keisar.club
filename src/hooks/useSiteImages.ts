@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import getImage from "../services/apiImages";
+import { getSiteImage } from "../services/apiImages";
 
-const useGetImage = (imageId: string) => {
+const useSiteImage = (imageName: string) => {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["image", imageId],
-    queryFn: () => getImage(imageId),
+    queryKey: ["image", imageName],
+    queryFn: () => getSiteImage(imageName),
+    retry: false,
   });
 
   if (error) console.log(error);
@@ -13,4 +14,4 @@ const useGetImage = (imageId: string) => {
   return { data, error, isLoading };
 };
 
-export default useGetImage;
+export { useSiteImage };
