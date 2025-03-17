@@ -11,7 +11,7 @@ const usePortfolio = () => {
     queryFn: () => getPortfolio(),
   });
 
-  console.log(portfolio);
+  // console.log(portfolio);
 
   if (error) console.log(error);
 

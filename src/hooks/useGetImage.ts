@@ -8,7 +8,7 @@ const useGetImage = (imageId: string) => {
   });
 
   if (error) console.log(error);
-  if (isLoading) console.log("Loading...");
+  // if (isLoading) console.log("Loading...");
 
   return { data, error, isLoading };
 };

@@ -46,7 +46,7 @@ function ProductPreview({ product }: { product: Product }) {
 
           <div className='flex items-center justify-between mt-auto'>
             <span className='md:text-2xl text-xl font-bold text-stone-700'>
-              {formatCurrency(product.price)}
+              {formatCurrency(product.price).slice(0, -3)}
             </span>
             <button className='bg-stone-700 text-white md:px-4 md:py-2 px-2 py-1 rounded-md font-medium hover:bg-stone-900 transition-colors'>
               לרכישה
