@@ -1,1 +1,0 @@
-import{s as o}from"./supabase-DhNnIaEV.js";const c=async a=>{const{data:t,error:r}=await o.storage.from("site-image").download(a);if(r)throw r;if(t)return URL.createObjectURL(t)},n=async a=>{const{data:t,error:r}=await o.storage.from("products-image").download(a);if(r)throw r;if(t)return URL.createObjectURL(t)};export{n as a,c as g};

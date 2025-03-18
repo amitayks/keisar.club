@@ -1,0 +1,1 @@
+import{s as o}from"./index-B8MsjlgR.js";const e=async()=>{const{data:r,error:t}=await o.from("products").select("*").eq("publish",!0);if(t)throw t;return r},c=async r=>{const{data:t,error:s}=await o.from("products").select("*").eq("SKU",r).single();if(s)throw s;return t};export{c as a,e as g};
