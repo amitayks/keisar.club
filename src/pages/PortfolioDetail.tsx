@@ -1,9 +1,9 @@
-import { Card } from "../../ui/skeleton/Card";
-import { Skeleton } from "../../ui/skeleton/Skeleton";
-import usePortfolioItem from "./usePortfolioItem";
+import { Card } from "../ui/skeleton/Card";
+import { Skeleton } from "../ui/skeleton/Skeleton";
+import usePortfolioItem from "../features/portfolio/usePortfolioItem";
 // import { Button } from '../../ui/Button';
 
-const PortfolioItem = () => {
+const PortfolioDetail = () => {
   const { portfolioItem, isLoading } = usePortfolioItem();
 
   if (isLoading) {
@@ -50,4 +50,4 @@ const PortfolioItem = () => {
   );
 };
 
-export default PortfolioItem;
+export default PortfolioDetail;

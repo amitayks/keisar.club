@@ -18,10 +18,12 @@ function DesktopNavBar() {
 
           <div className='md:flex md:items-center md:space-x-8'>
             <HeaderTab to='/' className='default' input='Home' />
-            <HeaderTab to='/about' className='default' input='About' />
+            <HeaderTab to='/portfolio' className='default' input='Portfolio' />
             <HeaderTab to='/products' className='default' input='Products' />
             <HeaderTab to='/contact' className='default' input='Contact' />
-            <HeaderTab to='/portfolio' className='default' input='Portfolio' />
+            <HeaderTab to='/about' className='default' input='About' />
+          </div>
+          <div className='md:flex md:items-center md:space-x-8'>
             <HeaderTab to='/order' className='order' input='Order Now' />
           </div>
         </div>

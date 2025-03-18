@@ -39,27 +39,27 @@ function MobileNavBar() {
             onClick={() => setIsOpen(false)}
           />
           <HeaderTab
-            to='/about'
-            className='mobile'
-            input='About'
-            onClick={() => setIsOpen(false)}
-          />
-          <HeaderTab
             to='/products'
             className='mobile'
             input='Products'
             onClick={() => setIsOpen(false)}
           />
           <HeaderTab
-            to='/contact'
-            className='mobile'
-            input='Contact'
-            onClick={() => setIsOpen(false)}
-          />
-          <HeaderTab
             to='/portfolio'
             className='mobile'
             input='Portfolio'
+            onClick={() => setIsOpen(false)}
+          />
+          <HeaderTab
+            to='/about'
+            className='mobile'
+            input='About'
+            onClick={() => setIsOpen(false)}
+          />
+          <HeaderTab
+            to='/contact'
+            className='mobile'
+            input='Contact'
             onClick={() => setIsOpen(false)}
           />
           <HeaderTab

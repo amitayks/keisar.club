@@ -6,6 +6,7 @@ export const getPortfolio = async () => {
     .select("*")
     .eq("publish", true);
   if (error) throw error;
+
   return data;
 };
 

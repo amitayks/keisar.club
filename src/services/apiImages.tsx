@@ -26,4 +26,15 @@ const getProductImage = async (imageName: string) => {
   }
 };
 
-export { getSiteImage, getProductImage };
+const getPortfolioImages = async () => {
+  const { data, error } = await supabase.storage
+    .from("portfolio-image")
+    .list("");
+
+  if (error) throw error;
+  console.log(data);
+
+  return data;
+};
+
+export { getSiteImage, getProductImage, getPortfolioImages };

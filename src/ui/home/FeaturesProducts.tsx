@@ -1,29 +1,17 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import useProducts from "./useProducts";
-import ProductPreview from "./ProductPreview";
-import ProductItemSkeleton from "../../ui/skeleton/ProductItemSkeleton";
+import useProducts from "../../features/products/useProducts";
+import ProductCard from "../../features/products/ProductCard";
 
 function FeaturesProducts() {
-  const { isLoading, products } = useProducts();
-
-  if (isLoading) return <ProductItemSkeleton />;
+  const { products } = useProducts();
 
   return (
     <section className='py-16 bg-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='text-center mb-16'>
-          <h2 className='text-3xl font-bold text-gray-900 mb-4'>
-            Featured Products
-          </h2>
-          <p className='text-xl text-gray-600 max-w-3xl mx-auto'>
-            Explore our most popular offerings that customers love.
-          </p>
-        </div>
-
         <div className='grid grid-cols-2 md:grid-cols-3 gap-8'>
           {products.map((product, i) =>
-            i < 6 ? <ProductPreview product={product} /> : null
+            i < 6 ? <ProductCard product={product} /> : null
           )}
         </div>
 

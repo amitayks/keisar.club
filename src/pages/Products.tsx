@@ -1,31 +1,14 @@
 import useProducts from "../features/products/useProducts";
-import ProductIntro from "../features/products/ProductIntro";
 import ProductFilters from "../features/products/ProductFilters";
-import ProductPreview from "../features/products/ProductPreview";
+import ProductCard from "../features/products/ProductCard";
 import { useMoveBack } from "../hooks/useMoveBack";
-import ProductItemSkeleton from "../ui/skeleton/ProductItemSkeleton";
-const Products = () => {
-  const { products, isLoading } = useProducts();
-  const moveBack = useMoveBack();
 
-  if (isLoading)
-    return (
-      <>
-        <ProductIntro />
-        <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center'>
-          <h3 className='text-xl font-medium text-gray-900 mb-4'>
-            Uur products are loading...
-          </h3>
-        </div>
-        <ProductItemSkeleton />
-      </>
-    );
+const Products = () => {
+  const { products } = useProducts();
+  const moveBack = useMoveBack();
 
   return (
     <div>
-      {/* Hero Section */}
-      <ProductIntro />
-
       {/* Filters and Search */}
       <ProductFilters products={products} />
 
@@ -35,7 +18,7 @@ const Products = () => {
           {products.length > 0 ? (
             <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8'>
               {products.map((product) => (
-                <ProductPreview product={product} />
+                <ProductCard key={product.id} product={product} />
               ))}
             </div>
           ) : (
