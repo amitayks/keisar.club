@@ -23,7 +23,7 @@ function PortfolioCard({ portfolio }: { portfolio: Portfolio }) {
       className='bg-white rounded-lg shadow-md overflow-hidden transition-transform min-h-full'
     >
       <Link
-        to={`/products/${portfolio.SKU}`}
+        to={`/portfolio/${portfolio.SKU}`}
         state={{ preserveScroll: true }}
         className='flex flex-col h-full'
       >
@@ -40,7 +40,7 @@ function PortfolioCard({ portfolio }: { portfolio: Portfolio }) {
         )}
 
         <div className='py-3 px-3 flex flex-col flex-grow'>
-          <CategoryTag cat={portfolio?.category} />
+          <CategoryTag cat={portfolio?.category} type='portfolio' />
 
           <p
             className='hidden md:block text-gray-600 mb-6 text-right'

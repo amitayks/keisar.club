@@ -16,9 +16,12 @@ function PortfolioSection() {
         </div>
 
         <div className='grid grid-cols-2 md:grid-cols-3 gap-8'>
-          {portfolio.map((portfolio) => (
-            <PortfolioCard key={portfolio.id} portfolio={portfolio} />
-          ))}
+          {portfolio.map(
+            (portfolio, i) =>
+              i < 6 && (
+                <PortfolioCard key={portfolio.id} portfolio={portfolio} />
+              )
+          )}
         </div>
 
         <div className='text-center mt-12'>

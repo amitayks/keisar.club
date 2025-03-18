@@ -41,7 +41,7 @@ function ProductCard({ product }: { product: Product }) {
         )}
 
         <div className='py-3 px-3 flex flex-col flex-grow'>
-          <CategoryTag cat={product.category} />
+          <CategoryTag cat={product.category} type='product' />
 
           <h3
             className='text-x md:text-xl mb-2 mt-3 font-semibold text-right'

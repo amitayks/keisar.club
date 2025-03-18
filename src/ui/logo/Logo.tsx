@@ -1,8 +1,6 @@
 const Logo = (props: any) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    width={86.5}
-    height={170.1}
     viewBox='183.6 -217.5 22.9 45'
     {...props}
   >
