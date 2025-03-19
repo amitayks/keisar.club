@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import HomeLoadingSkeleton from "../../ui/skeleton/HomeLoadingSkeleton";
+// import HomeLoadingSkeleton from "../../ui/skeleton/HomeLoadingSkeleton";
 
 const loadProductDetail = async () => {
   const module = await import("../../pages/ProductDetail"); // Import dynamically
@@ -14,7 +14,7 @@ const LazyProductDetail = () => {
     // cacheTime: Infinity, // Prevents reloading unless manually invalidated
   });
 
-  if (isLoading) return <HomeLoadingSkeleton />;
+  // if (isLoading) return <HomeLoadingSkeleton />;
   return Component ? <Component /> : null;
 };
 

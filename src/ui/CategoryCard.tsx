@@ -5,7 +5,7 @@ function CategoryTag({ cat, type }: { cat: string[]; type: string }) {
     portfolio:
       "bg-sky-100 dark:bg-zinc-700 opacity-100 text-black-900 md:text-[15px] font-medium px-6 py-1 rounded mt-2 mx-auto",
     detail:
-      "bg-sky-100 dark:bg-zinc-700 opacity-100 text-black-900 text-xs font-medium px-2.5 py-0.5 rounded-full mt-2 mx-auto",
+      "bg-sky-100 dark:bg-zinc-700 opacity-100 text-black-900 text-xs font-medium px-2.5 py-0.5 rounded mt-2 mx-auto",
   };
 
   return (

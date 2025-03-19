@@ -4,7 +4,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import AppLayout from "./ui/AppLayout";
 import ScrollToTop from "./ui/ScrollToTop";
-import HomeLoadingSkeleton from "./ui/skeleton/HomeLoadingSkeleton";
 
 import LazyHome from "./pages/LazyPages/LazyHome";
 import LazyAbout from "./pages/LazyPages/LazyAbout";
@@ -36,15 +35,15 @@ function App() {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index path='/' element={<LazyHome />} />
-            <Route path='/about' element={<LazyAbout />} />
             <Route path='/products' element={<LazyProducts />} />
             <Route path='/products/:SKU' element={<LazyProductDetail />} />
             <Route path='/portfolio' element={<LazyPortfolio />} />
             <Route path='/portfolio/:SKU' element={<LazyPortfolioDetail />} />
+            <Route path='/about' element={<LazyAbout />} />
             <Route path='/contact' element={<LazyContact />} />
             <Route path='/order' element={<LazyOrderForm />} />
             <Route path='/order/:id' element={<LazyOrderDetail />} />
-            <Route path='/skeleton' element={<HomeLoadingSkeleton />} />
+            {/* <Route path='/skeleton' element={<LazyProductDetail />} /> */}
           </Route>
           <Route path='*' element={<PageNotFound />} />
         </Routes>
