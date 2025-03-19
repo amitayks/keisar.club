@@ -1,4 +1,4 @@
-import{c as a,j as e,L as r}from"./index-BeAExvlc.js";import{A as l}from"./arrow-right-AELwm65F.js";/**
+import{c as a,j as e,L as r}from"./index-XsE31cq9.js";import{A as l}from"./arrow-right-C-yYREHn.js";/**
  * @license lucide-react v0.344.0 - ISC
  *
  * This source code is licensed under the ISC license.
