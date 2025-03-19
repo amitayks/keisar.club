@@ -7,7 +7,6 @@ import ScrollToTop from "./ui/ScrollToTop";
 
 import LazyHome from "./pages/LazyPages/LazyHome";
 import LazyAbout from "./pages/LazyPages/LazyAbout";
-import LazyProducts from "./pages/LazyPages/LazyProducts";
 import LazyPortfolio from "./pages/LazyPages/LazyPortfolio";
 import LazyContact from "./pages/LazyPages/LazyContact";
 
@@ -17,6 +16,7 @@ import LazyOrderDetail from "./pages/LazyPages/LazyOrderDetail";
 import LazyPortfolioDetail from "./pages/LazyPages/LazyPortfolioDetail";
 
 import PageNotFound from "./pages/PageNotFound";
+import Products from "./pages/Products";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,7 +35,7 @@ function App() {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index path='/' element={<LazyHome />} />
-            <Route path='/products' element={<LazyProducts />} />
+            <Route path='/products' element={<Products />} />
             <Route path='/products/:SKU' element={<LazyProductDetail />} />
             <Route path='/portfolio' element={<LazyPortfolio />} />
             <Route path='/portfolio/:SKU' element={<LazyPortfolioDetail />} />
