@@ -26,7 +26,6 @@ const ProductDetail = () => {
 
   const {
     product,
-    // productError,
     image,
     imagePack,
     isLoadingProduct,
@@ -35,16 +34,11 @@ const ProductDetail = () => {
     error,
   }: useProductType = useProduct();
 
-  // console.log(product);
-  // console.log(imagePack);
-
   useEffect(() => {
     if (image) {
       setSelectedImage(image);
     }
   }, [image]);
-
-  if (isLoadingProduct || !product) return <Spinner />;
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
@@ -56,18 +50,42 @@ const ProductDetail = () => {
   const handleOrder = () => {
     navigate("/order", {
       state: {
-        productId: product.id,
-        productName: product.name,
+        productId: product?.id,
+        productName: product?.name,
         quantity: quantity,
       },
     });
   };
 
+  // Create placeholder data for loading state
+  const placeholderProduct: Product = {
+    SKU: "",
+    description: "",
+    reviews: 0,
+    image: "",
+    imagePack: [],
+    id: "loading",
+    name: "",
+    price: 0,
+    rating: 0,
+    stock: 0,
+    category: [],
+    longDescription: "",
+    wood: "",
+    weight: "",
+    height: "",
+    length: "",
+    width: "",
+    shipmentPrice: 0,
+  };
+
+  const currentProduct = product || placeholderProduct;
+
   return (
-    <div className='dark:bg-zinc-900 dark:text-white ' dir='rtl'>
+    <div className='dark:bg-zinc-900 dark:text-white min-h-screen' dir='rtl'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
         {/* Breadcrumb */}
-        <Breadcrumb product={product} />
+        <Breadcrumb product={currentProduct} isLoading={isLoadingProduct} />
 
         {/* Product Details */}
         <div className='lg:grid lg:grid-cols-2 lg:gap-x-8'>
@@ -76,41 +94,59 @@ const ProductDetail = () => {
             image={image}
             imagePack={imagePack}
             isLoadingImage={isLoadingImage || isLoadingProduct}
-            // isLoadingImagePack={isLoadingImagePack || isLoadingProduct}
-            // error={error}
+            isLoadingImagePack={isLoadingImagePack || isLoadingProduct}
             selectedImage={selectedImage}
             setSelectedImage={setSelectedImage}
-            name={product.name}
+            name={currentProduct.name}
           />
 
           {/* Product Info */}
-          <div>
-            {/* Price and Rating */}
-            <div className='flex justify-between mb-4 items-center'>
-              <h1 className='text-3xl font-extrabold text-zinc-900 dark:text-stone-200 '>
-                {product.name}
-              </h1>
-              <Rating product={product} />
+          <div className='space-y-6'>
+            {/* Product Title and Rating */}
+            <div className='flex justify-between items-center'>
+              {isLoadingProduct ? (
+                <Skeleton className='h-10 w-3/4' />
+              ) : (
+                <h1 className='text-3xl font-extrabold text-zinc-900 dark:text-stone-200'>
+                  {currentProduct.name}
+                </h1>
+              )}
+              <Rating product={currentProduct} isLoading={isLoadingProduct} />
             </div>
 
             {/* Description */}
-            <Description product={product} />
+            <Description
+              product={currentProduct}
+              isLoading={isLoadingProduct}
+            />
+
             {/* Features */}
-            <FeaturesTable product={product} />
+            <FeaturesTable
+              product={currentProduct}
+              isLoading={isLoadingProduct}
+            />
+
             {/* Stock Status */}
-            <StockStatus product={product} />
+            <StockStatus
+              product={currentProduct}
+              isLoading={isLoadingProduct}
+            />
 
             {/* Order Form */}
-            <div className='border-t border-stone-200 dark:border-stone-700 pt-6'>
-              <div className='flex items-center justify-between mb-4'>
-                <Price product={product} />
+            <div className='border-t border-stone-200 dark:border-stone-700 pt-6 space-y-4'>
+              <div className='flex items-center justify-between'>
+                <Price product={currentProduct} isLoading={isLoadingProduct} />
                 <Quantity
                   quantity={quantity}
                   setQuantity={setQuantity}
                   handleQuantityChange={handleQuantityChange}
+                  isDisabled={isLoadingProduct}
                 />
               </div>
-              <OrderButton handleOrder={handleOrder} />
+              <OrderButton
+                handleOrder={handleOrder}
+                isDisabled={isLoadingProduct}
+              />
               <Message />
             </div>
           </div>
@@ -122,26 +158,86 @@ const ProductDetail = () => {
 
 export default ProductDetail;
 
-function FeaturesTable({ product }: { product: Product }) {
+function FeaturesTable({
+  product,
+  isLoading,
+}: {
+  product: Product;
+  isLoading: boolean;
+}) {
+  if (isLoading) {
+    return (
+      <div className='mb-8'>
+        <h2 className='text-lg font-semibold text-zinc-900 dark:text-stone-200 mb-2'>
+          מידע נוסף
+        </h2>
+        <Skeleton className='h-48 w-full' />
+      </div>
+    );
+  }
+
   return (
     <div className='mb-8'>
       <h2 className='text-lg font-semibold text-zinc-900 dark:text-stone-200 mb-2'>
         מידע נוסף
       </h2>
-      <ProductTable product={product} />
+      <div className='text-stone-600 dark:text-stone-400 space-y-2'>
+        <div className='flex justify-between py-2'>
+          <span className='font-medium'>Wood</span>
+          <span>{product?.wood}</span>
+        </div>
+        <div className='flex justify-between py-2'>
+          <span className='font-medium'>Weight</span>
+          <span>{product.weight}</span>
+        </div>
+        <div className='flex justify-between py-2'>
+          <span className='font-medium'>Height</span>
+          <span>{product.height}</span>
+        </div>
+        <div className='flex justify-between py-2'>
+          <span className='font-medium'>Length</span>
+          <span>{product.length}</span>
+        </div>
+        <div className='flex justify-between py-2'>
+          <span className='font-medium'>Width</span>
+          <span>{product.width}</span>
+        </div>
+        <div className='flex justify-between py-2'>
+          <span className='font-medium'>Shipment Price</span>
+          <span>
+            {product.shipmentPrice
+              ? formatCurrency(product.shipmentPrice)
+              : formatCurrency(0)}
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
 
-function Description({ product }: { product: Product }) {
+function Description({
+  product,
+  isLoading,
+}: {
+  product: Product;
+  isLoading: boolean;
+}) {
   return (
     <div className='mb-6'>
       <h2 className='text-lg font-semibold text-zinc-900 dark:text-stone-200 mb-2'>
         תיאור
       </h2>
-      <p className='text-stone-600 dark:text-stone-400'>
-        {product.longDescription}
-      </p>
+      {isLoading ? (
+        <div className='space-y-2'>
+          <Skeleton className='h-4 w-full' />
+          <Skeleton className='h-4 w-5/6' />
+          <Skeleton className='h-4 w-4/6' />
+        </div>
+      ) : (
+        <p className='text-stone-600 dark:text-stone-400'>
+          {product.longDescription}
+        </p>
+      )}
     </div>
   );
 }
@@ -150,17 +246,20 @@ function Quantity({
   quantity,
   setQuantity,
   handleQuantityChange,
+  isDisabled,
 }: {
   quantity: number;
   setQuantity: (quantity: number) => void;
   handleQuantityChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  isDisabled: boolean;
 }) {
   return (
     <div className='flex items-center'>
       <button
         type='button'
         onClick={() => setQuantity(quantity + 1)}
-        className='p-2 border border-stone-300 dark:border-stone-700 rounded-r-md bg-stone-50 text-stone-500 hover:bg-stone-100 dark:bg-zinc-900 dark:text-white'
+        className='p-2 border border-stone-300 dark:border-stone-700 rounded-r-md bg-stone-50 text-stone-500 hover:bg-stone-100 dark:bg-zinc-900 dark:text-white disabled:opacity-50'
+        disabled={isDisabled}
       >
         +
       </button>
@@ -171,12 +270,14 @@ function Quantity({
         min='1'
         value={quantity}
         onChange={handleQuantityChange}
-        className='p-2 w-16 border-t border-b border-stone-300 dark:border-stone-700 text-center focus:ring-indigo-500 focus:border-indigo-500 rounded-none dark:bg-zinc-900 dark:text-white'
+        className='p-2 w-16 border-t border-b border-stone-300 dark:border-stone-700 text-center focus:ring-indigo-500 focus:border-indigo-500 rounded-none dark:bg-zinc-900 dark:text-white disabled:opacity-50'
+        disabled={isDisabled}
       />
       <button
         type='button'
         onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-        className='p-2 border border-stone-300 dark:border-stone-700 rounded-l-md bg-stone-50 text-stone-500 hover:bg-stone-100 dark:bg-zinc-900 dark:text-white'
+        className='p-2 border border-stone-300 dark:border-stone-700 rounded-l-md bg-stone-50 text-stone-500 hover:bg-stone-100 dark:bg-zinc-900 dark:text-white disabled:opacity-50'
+        disabled={isDisabled}
       >
         -
       </button>
@@ -190,12 +291,18 @@ function Quantity({
   );
 }
 
-function OrderButton({ handleOrder }: { handleOrder: () => void }) {
+function OrderButton({
+  handleOrder,
+  isDisabled,
+}: {
+  handleOrder: () => void;
+  isDisabled: boolean;
+}) {
   return (
-    <div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4'>
+    <div className='flex flex-col sm:flex-row gap-4'>
       <Link
         to='/contact'
-        className='flex-1 bg-stone-100 text-stone-800 px-6 py-3 rounded-md font-medium hover:bg-stone-200 transition-colors flex items-center justify-center'
+        className='flex-1 bg-stone-100 text-stone-800 px-6 py-3 rounded-md font-medium hover:bg-stone-200 transition-colors flex items-center justify-center disabled:opacity-50'
       >
         Ask a Question
         <Info className='h-5 w-5 mr-2' />
@@ -203,7 +310,8 @@ function OrderButton({ handleOrder }: { handleOrder: () => void }) {
       <button
         type='button'
         onClick={handleOrder}
-        className='flex-1 bg-indigo-600 text-white px-6 py-3 rounded-md font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center'
+        disabled={isDisabled}
+        className='flex-1 bg-indigo-600 text-white px-6 py-3 rounded-md font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center disabled:opacity-50'
       >
         Order Now
         <ShoppingCart className='h-5 w-5 mr-2' />
@@ -212,13 +320,23 @@ function OrderButton({ handleOrder }: { handleOrder: () => void }) {
   );
 }
 
-function StockStatus({ product }: { product: Product }) {
+function StockStatus({
+  product,
+  isLoading,
+}: {
+  product: Product;
+  isLoading: boolean;
+}) {
+  if (isLoading) {
+    return <Skeleton className='h-6 w-24 mb-6' />;
+  }
+
   return (
     <div className='flex items-center gap-2 mb-6'>
       <div
-        className={`h-3 w-3 rounded-full  ${
-          product?.stock === 0 ? "bg-green-500" : "bg-yellow-500"
-        } mr-2`}
+        className={`h-3 w-3 rounded-full ${
+          product?.stock === 0 ? "bg-red-500" : "bg-green-500"
+        }`}
       ></div>
       <span className='text-sm font-medium text-stone-600 dark:text-stone-400'>
         in stock: {product.stock}
@@ -227,23 +345,44 @@ function StockStatus({ product }: { product: Product }) {
   );
 }
 
-function Price({ product }: { product: Product }) {
+function Price({
+  product,
+  isLoading,
+}: {
+  product: Product;
+  isLoading: boolean;
+}) {
+  if (isLoading) {
+    return <Skeleton className='h-8 w-32' />;
+  }
+
   return (
     <p className='text-3xl font-bold text-zinc-900 dark:text-stone-200'>
       {formatCurrency(product.price)}
     </p>
   );
 }
+
 function Message() {
   return (
-    <p className='mt-4 text-sm text-stone-500 dark:text-stone-400 flex items-center gap-2'>
+    <p className='text-sm text-stone-500 dark:text-stone-400 flex items-center gap-2'>
       <Info className='h-4 w-4' />
       להזמנות גדולות ניתן לפנות לשירות לקוחות
     </p>
   );
 }
 
-function Rating({ product }: { product: Product }) {
+function Rating({
+  product,
+  isLoading,
+}: {
+  product: Product;
+  isLoading: boolean;
+}) {
+  if (isLoading) {
+    return <Skeleton className='h-5 w-28' />;
+  }
+
   return (
     <div className='flex items-center'>
       <div className='flex items-center'>
@@ -269,7 +408,13 @@ function Rating({ product }: { product: Product }) {
   );
 }
 
-function Breadcrumb({ product }: { product: Product }) {
+function Breadcrumb({
+  product,
+  isLoading,
+}: {
+  product: Product;
+  isLoading: boolean;
+}) {
   return (
     <nav
       className='flex items-center justify-between text-sm font-medium mb-8'
@@ -282,14 +427,18 @@ function Breadcrumb({ product }: { product: Product }) {
         <ArrowLeft className='h-4 w-4 mr-1' />
         Back to Products
       </Link>
-      <CategoryTag cat={product.category as string[]} type='detail' />
+      {isLoading ? (
+        <Skeleton className='h-6 w-24' />
+      ) : (
+        <CategoryTag cat={product.category as string[]} type='detail' />
+      )}
     </nav>
   );
 }
 
 function ProductImages({
   isLoadingImage,
-  // isLoadingImagePack,
+  isLoadingImagePack,
   image,
   imagePack,
   selectedImage,
@@ -297,7 +446,7 @@ function ProductImages({
   name,
 }: {
   isLoadingImage: boolean;
-  // isLoadingImagePack: boolean;
+  isLoadingImagePack: boolean;
   image: string | null;
   imagePack: { url: string | null; error: Error | null; isLoading: boolean }[];
   selectedImage: string | null;
@@ -306,36 +455,70 @@ function ProductImages({
 }) {
   return (
     <div className='mb-8 lg:mb-0'>
-      {isLoadingImage || !image ? (
-        <div className='aspect-square w-full'>
-          <Skeleton className='w-full h-full object-cover' />
-        </div>
-      ) : (
-        <img
-          src={selectedImage || ""}
-          alt={name}
-          // loading='lazy'
-          className='w-full h-auto object-cover rounded-lg mb-4'
-        />
-      )}
+      {/* Main image with consistent height */}
+      <div className='aspect-square w-full rounded-lg overflow-hidden mb-4'>
+        {isLoadingImage || !selectedImage ? (
+          <Skeleton className='w-full h-full' />
+        ) : (
+          <img
+            src={selectedImage}
+            alt={name}
+            className='w-full h-full object-cover'
+          />
+        )}
+      </div>
 
       {/* Thumbnail Images */}
-      {imagePack && imagePack.length > 0 && (
-        <div className='grid grid-cols-4 gap-2'>
-          {imagePack.map((imageUrl, i) => {
-            return (
-              <ImageThumbnail
-                key={i}
-                imageUrl={imageUrl.url || ""}
-                i={i}
-                selectedImage={selectedImage || ""}
-                setSelectedImage={setSelectedImage}
-                name={name}
-              />
-            );
-          })}
-        </div>
-      )}
+      <div className='grid grid-cols-4 gap-2'>
+        {isLoadingImagePack
+          ? Array(4)
+              .fill(0)
+              .map((_, i) => (
+                <div
+                  key={i}
+                  className='aspect-square rounded-md overflow-hidden'
+                >
+                  <Skeleton className='w-full h-full' />
+                </div>
+              ))
+          : imagePack &&
+            imagePack.map((imageItem, i) => {
+              if (!imageItem.url) {
+                return (
+                  <div
+                    key={i}
+                    className='aspect-square rounded-md overflow-hidden'
+                  >
+                    <Skeleton className='w-full h-full' />
+                  </div>
+                );
+              }
+
+              return (
+                <div
+                  key={i}
+                  className={`aspect-square cursor-pointer rounded-md overflow-hidden ${
+                    selectedImage === imageItem.url
+                      ? "ring-2 ring-indigo-500"
+                      : ""
+                  }`}
+                  onClick={() =>
+                    imageItem.url && setSelectedImage(imageItem.url)
+                  }
+                >
+                  {imageItem.isLoading ? (
+                    <Skeleton className='w-full h-full' />
+                  ) : (
+                    <img
+                      src={imageItem.url}
+                      alt={`${name} thumbnail ${i + 1}`}
+                      className='w-full h-full object-cover'
+                    />
+                  )}
+                </div>
+              );
+            })}
+      </div>
     </div>
   );
 }

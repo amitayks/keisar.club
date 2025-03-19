@@ -9,7 +9,7 @@ type Product = {
   id: string;
   SKU: string;
   name: string;
-  description: string;
+  longDescription: string;
   price: number;
   image: string;
   category: string[];
@@ -51,7 +51,7 @@ function ProductCard({ product }: { product: Product }) {
           </h3>
 
           <p className=' mb-6 text-right' dir='rtl'>
-            {product.description.split(" ").slice(0, 4).join(" ")}
+            {product.longDescription.split(" ").slice(0, 4).join(" ")}
           </p>
 
           <div className='flex items-center justify-center mt-auto border-t border-blue-200 pt-4 dark:border-zinc-700'>
