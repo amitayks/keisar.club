@@ -1,4 +1,3 @@
-import { Card } from "../ui/skeleton/Card";
 import { Skeleton } from "../ui/skeleton/Skeleton";
 import usePortfolioItem from "../features/portfolio/usePortfolioItem";
 // import { Button } from '../../ui/Button';
@@ -28,7 +27,7 @@ const PortfolioDetail = () => {
         className='rounded-lg object-cover w-full h-full-6'
       />
       <div className='grid grid-cols-2 gap-4'>
-        <div className='grid gap-4 w-full h-full bg-white shadow-sm rounded-xl p-4 sm:p-6 md:p-8 lg:p-10 w-full mx-auto max-w-[95%] sm:max-w-[90%] md:max-w-[85%] lg:max-w-[80%]'>
+        <div className='grid gap-4 h-full bg-white shadow-sm rounded-xl p-4 sm:p-6 md:p-8 lg:p-10 w-full mx-auto max-w-[95%] sm:max-w-[90%] md:max-w-[85%] lg:max-w-[80%]'>
           {portfolioItem?.images?.map((img: string, index: number) => (
             <img
               key={index}

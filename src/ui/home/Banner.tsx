@@ -4,8 +4,9 @@ import { useSiteImage } from "../../hooks/useSiteImages";
 
 function Banner() {
   const { data: backgroundImage } = useSiteImage("wood-background.jpg");
-  const { data: bannerImageMobile } = useSiteImage("banner-mobile.png");
   const { data: bannerImageDesktop } = useSiteImage("banner-desktop.png");
+  const { data: bannerImageMobile } = useSiteImage("banner-mobile.png");
+
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   useEffect(() => {
@@ -48,7 +49,7 @@ function ScreenBanner({
   isLoaded: boolean;
 }) {
   const navigate = useNavigate();
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(isLoaded);
 
   const styles = {
     desktop: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 hidden md:block",

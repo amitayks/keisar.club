@@ -3,27 +3,26 @@ import supabase from "./supabase";
 const getSiteImage = async (imageName: string) => {
   const { data, error } = await supabase.storage
     .from("site-image")
-    .download(imageName);
+    .createSignedUrl(imageName, 60 * 60);
 
   if (error) throw error;
 
   if (data) {
-    const url = URL.createObjectURL(data);
-    return url;
+    return data?.signedUrl;
   }
 };
 
 const getProductImage = async (imageName: string) => {
   const { data, error } = await supabase.storage
     .from("products-image")
-    .download(imageName);
+    .createSignedUrl(imageName, 60 * 60);
 
   if (error) throw error;
 
-  if (data) {
-    const url = URL.createObjectURL(data);
-    return url;
-  }
+  return data?.signedUrl ?? null;
+  // if (data) {
+  //   return data?.signedUrl;
+  // }
 };
 
 const getPortfolioImages = async () => {

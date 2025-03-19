@@ -20,7 +20,7 @@ function ProductFilters(products: any) {
   //   });
 
   return (
-    <section className='bg-white shadow-md'>
+    <section className=' shadow-md'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4'>
         <div className='flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0'>
           {/* Search */}
@@ -33,13 +33,13 @@ function ProductFilters(products: any) {
               placeholder='Search products...'
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+              className='block w-full pl-10 pr-3 py-2 border border-zinc-700 rounded-md leading-5  dark:bg-zinc-800 placeholder-gray-500 focus:outline-none focus:ring-zinc-600 focus:border-zinc-600 sm:text-sm'
             />
 
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm("")}
-                className='absolute inset-y-0 right-0 pr-3 flex items-center'
+                className='absolute inset-y-0 right-0 pr-3 flex items-center dark:text-zinc-400'
               >
                 <X className='h-4 w-4 text-gray-400 hover:text-gray-600' />
               </button>

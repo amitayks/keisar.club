@@ -4,12 +4,11 @@ import { Menu, X, Moon, Sun, LogIn } from "lucide-react";
 import Logo from "../logo/Logo";
 import { useState, useEffect } from "react";
 import MenuButton from "./MenuButton";
-import { useSettingsContext } from "../../hooks/useSettingsContext";
-
+import { toggleTheme } from "../../hooks/darkTheme";
 function MobileNavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { settings, toggleDarkMode } = useSettingsContext();
-  const { darkMode, siteName, navbarPosition } = settings;
+  const darkMode = localStorage.getItem("darkMode");
+  const [isDarkMode, setIsDarkMode] = useState(darkMode === "true");
 
   // Handle body scroll lock when menu is open
   useEffect(() => {
@@ -23,22 +22,8 @@ function MobileNavBar() {
     };
   }, [isOpen]);
 
-  // Determine which side the navbar slides in from
-  const slideDirection =
-    navbarPosition === "left"
-      ? {
-          open: "translate-x-0",
-          closed: "-translate-x-full",
-          position: "left-0",
-        }
-      : {
-          open: "translate-x-0",
-          closed: "translate-x-full",
-          position: "right-0",
-        };
-
   return (
-    <nav className='bg-white dark:bg-gray-800 shadow-md md:hidden'>
+    <nav className='bg-white dark:bg-zinc-900 shadow-md md:hidden'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between h-16'>
           <div className='flex justify-between w-full'>
@@ -46,10 +31,10 @@ function MobileNavBar() {
               <Logo
                 width={40}
                 height={40}
-                fill={darkMode ? "white" : "black"}
+                fill={isDarkMode ? "white" : "black"}
               />
-              <span className='text-xl font-bold text-gray-900 dark:text-white'>
-                {siteName}
+              <span className='text-xl font-bold text-zinc-900 dark:text-stone-100'>
+                Keisar Club
               </span>
             </Link>
             <MenuButton onClick={() => setIsOpen(!isOpen)}>
@@ -65,16 +50,14 @@ function MobileNavBar() {
 
       {/* Slide-in menu */}
       <div
-        className={`fixed top-0 ${
-          slideDirection.position
-        } h-full w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out z-50 flex flex-col ${
-          isOpen ? slideDirection.open : slideDirection.closed
+        className={`fixed top-0 right-0  h-full w-64 bg-white dark:bg-zinc-900 shadow-lg transform transition-transform duration-300 ease-in-out z-50 flex flex-col ${
+          isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Close button */}
         <div className='flex justify-end p-4'>
           <MenuButton onClick={() => setIsOpen(false)}>
-            <X className='h-6 w-6 dark:text-white' />
+            <X className='h-6 w-6 dark:text-stone-100' />
           </MenuButton>
         </div>
 
@@ -114,31 +97,34 @@ function MobileNavBar() {
           </div>
         </div>
 
-        {/* Bottom section with login and dark mode toggle */}
+        {/* Dark mode toggle */}
         <div className='px-4 py-4 border-t border-gray-200 dark:border-gray-700'>
-          <div className='flex justify-between items-center'>
-            <HeaderTab
-              to='/login'
-              className='mobileOrder'
-              input='Login'
-              icon={LogIn}
-              onClick={() => setIsOpen(false)}
-            />
-
-            <button
-              onClick={toggleDarkMode}
-              className='flex items-center text-gray-700 dark:text-gray-300 hover:text-stone-900 dark:hover:text-white'
-              aria-label={
-                darkMode ? "Switch to light mode" : "Switch to dark mode"
-              }
-            >
-              {darkMode ? (
-                <Sun className='h-5 w-5' />
-              ) : (
-                <Moon className='h-5 w-5' />
-              )}
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              toggleTheme();
+              setIsDarkMode(!isDarkMode);
+            }}
+            className='flex items-center text-gray-700 dark:text-gray-300 hover:text-stone-900 dark:hover:text-white'
+            aria-label={
+              darkMode ? "Switch to light mode" : "Switch to dark mode"
+            }
+          >
+            {isDarkMode ? (
+              <Sun className='h-5 w-5' />
+            ) : (
+              <Moon className='h-5 w-5' />
+            )}
+          </button>
+        </div>
+        {/* Bottom section with login and dark mode toggle */}
+        <div className='px-4 py-4 border-t border-gray-200 dark:border-gray-700 flex items-center '>
+          <HeaderTab
+            to='/login'
+            className='mobileOrder'
+            input='Login'
+            icon={LogIn}
+            onClick={() => setIsOpen(false)}
+          />
         </div>
       </div>
 

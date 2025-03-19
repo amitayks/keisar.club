@@ -21,7 +21,7 @@ function ProductCard({ product }: { product: Product }) {
   return (
     <article
       key={product.id}
-      className='bg-white rounded-lg shadow-md overflow-hidden transition-transform min-h-full'
+      className=' dark:bg-zinc-800 rounded-lg shadow-md overflow-hidden transition-transform min-h-full'
     >
       <Link
         to={`/products/${product.SKU}`}
@@ -50,12 +50,12 @@ function ProductCard({ product }: { product: Product }) {
             {product.name}
           </h3>
 
-          <p className='text-gray-600 mb-6 text-right' dir='rtl'>
+          <p className=' mb-6 text-right' dir='rtl'>
             {product.description.split(" ").slice(0, 4).join(" ")}
           </p>
 
-          <div className='flex items-center justify-center mt-auto border-t border-blue-200 pt-4'>
-            <span className='md:text-xl text-lg font-bold text-stone-700'>
+          <div className='flex items-center justify-center mt-auto border-t border-blue-200 pt-4 dark:border-zinc-700'>
+            <span className='md:text-xl text-lg font-bold'>
               {formatCurrency(product.price).slice(0, -3)}
             </span>
           </div>

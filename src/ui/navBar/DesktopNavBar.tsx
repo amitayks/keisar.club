@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import { Moon, Sun, LogIn } from "lucide-react";
 import HeaderTab from "./HeaderTab";
 import Logo from "../logo/Logo";
-import { useSettingsContext } from "../../hooks/useSettingsContext";
-
+import { toggleTheme } from "../../hooks/darkTheme";
+import { useState } from "react";
 function DesktopNavBar() {
-  const { settings, toggleDarkMode } = useSettingsContext();
-  const { darkMode, siteName } = settings;
+  const darkMode = localStorage.getItem("darkMode");
+  const [isDarkMode, setIsDarkMode] = useState(darkMode === "true");
 
   return (
-    <nav className='bg-white dark:bg-gray-800 shadow-md hidden md:block'>
+    <nav className='bg-white dark:bg-zinc-900 shadow-md hidden md:block'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between h-16'>
           <div className='hidden md:flex items-center'>
@@ -17,10 +17,10 @@ function DesktopNavBar() {
               <Logo
                 width={40}
                 height={40}
-                fill={darkMode ? "white" : "black"}
+                fill={isDarkMode ? "white" : "black"}
               />
-              <span className='ml-2 text-xl font-bold text-gray-900 dark:text-white'>
-                {siteName}
+              <span className='ml-2 text-xl font-bold text-zinc-900 dark:text-stone-100'>
+                Keisar Club
               </span>
             </Link>
           </div>
@@ -35,13 +35,16 @@ function DesktopNavBar() {
 
           <div className='md:flex md:items-center md:space-x-6'>
             <button
-              onClick={toggleDarkMode}
-              className='text-gray-700 dark:text-gray-300 hover:text-stone-900 dark:hover:text-white'
+              onClick={() => {
+                toggleTheme();
+                setIsDarkMode(!isDarkMode);
+              }}
+              className='text-zinc-900 dark:text-stone-100 hover:text-stone-900 dark:hover:text-white'
               aria-label={
                 darkMode ? "Switch to light mode" : "Switch to dark mode"
               }
             >
-              {darkMode ? (
+              {isDarkMode ? (
                 <Sun className='h-5 w-5' />
               ) : (
                 <Moon className='h-5 w-5' />

@@ -13,7 +13,7 @@ const Products = () => {
       <ProductFilters products={products} />
 
       {/* Products Grid */}
-      <section className='py-12 bg-gray-50'>
+      <section className='py-12'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
           {products.length > 0 ? (
             <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8'>
