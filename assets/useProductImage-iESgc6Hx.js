@@ -1,1 +1,0 @@
-import{u as t}from"./index-CYpEEXez.js";import{a as o}from"./CategoryCard-BC-LgW10.js";const m=e=>{const{data:a,isLoading:r}=t({queryKey:["productImage",e],queryFn:()=>o(e),staleTime:0});return{imageData:a,isLoading:r}};export{m as u};
