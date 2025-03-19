@@ -1,4 +1,4 @@
-import{c as o,r as l,j as e,X as d,a as m}from"./index-C6im8Sss.js";import{u as x,P as u}from"./ProductCard-aT92Xb_c.js";import"./apiProduct--kH9GX82.js";import"./supabase-B-ejfR2V.js";import"./CategoryCard-DrmUmd0A.js";import"./apiImages-rVhFzkXT.js";/**
+import{c as o,r as l,j as e,X as d,a as m}from"./index-CYpEEXez.js";import{u as x,P as u}from"./ProductCard-DZnXf1g0.js";import"./apiProduct-B0VukgiZ.js";import"./supabase-DCwEJslB.js";import"./useProductImage-iESgc6Hx.js";import"./CategoryCard-BC-LgW10.js";/**
  * @license lucide-react v0.344.0 - ISC
  *
  * This source code is licensed under the ISC license.

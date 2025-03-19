@@ -1,1 +1,0 @@
-import{s}from"./supabase-B-ejfR2V.js";const a=async t=>{const{data:r,error:e}=await s.storage.from("site-image").createSignedUrl(t,3600);if(e)throw e;if(r)return r==null?void 0:r.signedUrl},i=async t=>{const{data:r,error:e}=await s.storage.from("products-image").createSignedUrl(t,3600);if(e)throw e;if(r)return r==null?void 0:r.signedUrl};export{i as a,a as g};
