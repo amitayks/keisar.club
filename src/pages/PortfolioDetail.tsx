@@ -26,15 +26,10 @@ type PortfolioImageType = {
 };
 
 const PortfolioDetail = () => {
-  const { sku } = useParams<{ sku: string }>();
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const {
-    portfolioItem,
-    isLoadingItem,
-    error: itemError,
-  } = usePortfolioItem(sku || "");
+  const { portfolioItem, isLoadingItem, error: itemError } = usePortfolioItem();
 
   const {
     mainImage,
@@ -99,14 +94,18 @@ const PortfolioDetail = () => {
           {/* Portfolio Images */}
           <div className='mb-8 lg:mb-0'>
             {/* Main image with consistent height */}
-            <div className='aspect-square w-full rounded-lg overflow-hidden mb-4'>
-              {isLoadingMainImage || !selectedImage ? (
-                <Skeleton className='w-full h-full' />
-              ) : (
+            <div className='aspect-square w-full relative overflow-hidden rounded-lg mb-4'>
+              <Skeleton className='absolute inset-0 w-full h-full' />
+              {!isLoadingMainImage && selectedImage && (
                 <img
                   src={selectedImage}
                   alt={currentItem.title}
-                  className='w-full h-full object-cover'
+                  className='w-full h-full object-cover absolute inset-0 z-10'
+                  onLoad={(e) => {
+                    const target = e.target as HTMLElement;
+                    target.style.opacity = "1";
+                  }}
+                  style={{ opacity: 0, transition: "opacity 0.3s ease-in-out" }}
                 />
               )}
             </div>
