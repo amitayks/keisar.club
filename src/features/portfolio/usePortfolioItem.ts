@@ -1,25 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
 import { getPortfolioById } from "../../services/apiPortfolio";
 
-const usePortfolioItem = () => {
-  const { SKU } = useParams<{ SKU: string }>();
-
+const usePortfolioItem = (sku: string) => {
   const {
+    data: portfolioItem,
+    isLoading: isLoadingItem,
     error,
-    isLoading,
-    data: portfolioItem = [],
   } = useQuery({
-    queryKey: ["portfolioItem", SKU],
-    queryFn: () => {
-      if (!SKU) throw new Error("SKU is required");
-      return getPortfolioById(SKU);
-    },
+    queryKey: ["portfolioItem", sku],
+    queryFn: () => getPortfolioById(sku),
+    enabled: !!sku,
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
-  if (error) console.log(error);
-
-  return { error, isLoading, portfolioItem };
+  return { portfolioItem, isLoadingItem, error };
 };
 
 export default usePortfolioItem;
