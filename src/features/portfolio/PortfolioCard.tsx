@@ -21,40 +21,25 @@ function PortfolioCard({ portfolio }: { portfolio: Portfolio }) {
   return (
     <article
       key={portfolio.id}
-      className='bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden transition-transform min-h-full'
+      className={`bg-white dark:bg-zinc-900 rounded-lg shadow-md overflow-hidden transition-transform min-h-full `}
     >
       <Link
         to={`/portfolio/${portfolio.SKU}`}
         state={{ preserveScroll: true }}
         className='flex flex-col h-full'
       >
-        {/* {isLoading || !imageData ? (
-          <div className='aspect-square w-full'>
-            <Skeleton className='w-full h-full object-cover' />
-          </div>
-        ) : (
-          <img
-            src={imageData}
-            alt={portfolio.title}
-            // loading='lazy'
-            className='w-full h-70 object-cover'
-          />
-        )} */}
-        <div className='relative aspect-square w-full'>
-          {isLoading && (
-            <Skeleton className='absolute inset-0 w-full h-full object-cover' />
-          )}
-          {imageData && (
+        <div className='aspect-square w-full relative overflow-hidden'>
+          <Skeleton className='absolute inset-0 w-full h-full' />
+          {!isLoading && imageData && (
             <img
               src={imageData}
               alt={portfolio.title}
-              onLoad={() => {
-                const timer = setTimeout(() => {
-                  setIsImageLoaded(true);
-                }, 5000);
-                return () => clearTimeout(timer);
+              className='w-full h-full object-cover absolute inset-0 z-10'
+              onLoad={(e) => {
+                const target = e.target as HTMLElement;
+                target.style.opacity = "1";
               }}
-              className='w-full h-70 object-cover'
+              style={{ opacity: 0, transition: "opacity 0.3s ease-in-out" }}
             />
           )}
         </div>

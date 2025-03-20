@@ -20,14 +20,19 @@ function ProductImages({
   return (
     <div className='mb-8 lg:mb-0'>
       {/* Main image with consistent height */}
-      <div className='aspect-square w-full rounded-lg overflow-hidden mb-4'>
-        {isLoadingImage || !selectedImage ? (
-          <Skeleton className='w-full h-full' />
-        ) : (
+
+      <div className='aspect-square w-full relative overflow-hidden rounded-lg mb-4'>
+        <Skeleton className='absolute inset-0 w-full h-full' />
+        {!isLoadingImage && selectedImage && (
           <img
             src={selectedImage}
             alt={name}
-            className='w-full h-full object-cover'
+            className='w-full h-full object-cover absolute inset-0 z-10'
+            onLoad={(e) => {
+              const target = e.target as HTMLElement;
+              target.style.opacity = "1";
+            }}
+            style={{ opacity: 0, transition: "opacity 0.3s ease-in-out" }}
           />
         )}
       </div>
@@ -53,7 +58,7 @@ function ProductImages({
                     key={i}
                     className='aspect-square rounded-md overflow-hidden'
                   >
-                    <Skeleton className='w-full h-full' />
+                    <Skeleton className=' w-full h-full' />
                   </div>
                 );
               }
@@ -71,12 +76,20 @@ function ProductImages({
                   }
                 >
                   {imageItem.isLoading ? (
-                    <Skeleton className='w-full h-full' />
+                    <Skeleton className='absolute inset-0 w-full h-full' />
                   ) : (
                     <img
                       src={imageItem.url}
                       alt={`${name} thumbnail ${i + 1}`}
                       className='w-full h-full object-cover'
+                      onLoad={(e) => {
+                        const target = e.target as HTMLElement;
+                        target.style.opacity = "1";
+                      }}
+                      style={{
+                        opacity: 0,
+                        transition: "opacity 0.3s ease-in-out",
+                      }}
                     />
                   )}
                 </div>

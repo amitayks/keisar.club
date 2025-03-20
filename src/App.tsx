@@ -5,18 +5,18 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import AppLayout from "./ui/AppLayout";
 import ScrollToTop from "./ui/ScrollToTop";
 
-import LazyHome from "./pages/LazyPages/LazyHome";
-import LazyAbout from "./pages/LazyPages/LazyAbout";
-import LazyPortfolio from "./pages/LazyPages/LazyPortfolio";
-import LazyContact from "./pages/LazyPages/LazyContact";
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
+import Portfolio from "./pages/Portfolio";
 
-import LazyProductDetail from "./pages/LazyPages/LazyProductDetail";
+import PageNotFound from "./pages/PageNotFound";
+
+import LazyAbout from "./pages/LazyPages/LazyAbout";
+import LazyContact from "./pages/LazyPages/LazyContact";
 import LazyOrderForm from "./pages/LazyPages/LazyOrderForm";
 import LazyOrderDetail from "./pages/LazyPages/LazyOrderDetail";
 import LazyPortfolioDetail from "./pages/LazyPages/LazyPortfolioDetail";
-
-import PageNotFound from "./pages/PageNotFound";
-import Products from "./pages/Products";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,10 +34,10 @@ function App() {
         <ScrollToTop />
         <Routes>
           <Route element={<AppLayout />}>
-            <Route index path='/' element={<LazyHome />} />
+            <Route index path='/' element={<Home />} />
             <Route path='/products' element={<Products />} />
-            <Route path='/products/:SKU' element={<LazyProductDetail />} />
-            <Route path='/portfolio' element={<LazyPortfolio />} />
+            <Route path='/products/:SKU' element={<ProductDetail />} />
+            <Route path='/portfolio' element={<Portfolio />} />
             <Route path='/portfolio/:SKU' element={<LazyPortfolioDetail />} />
             <Route path='/about' element={<LazyAbout />} />
             <Route path='/contact' element={<LazyContact />} />
