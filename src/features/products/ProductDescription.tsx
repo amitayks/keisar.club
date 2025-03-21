@@ -1,5 +1,5 @@
 import { Skeleton } from "../../ui/skeleton/Skeleton";
-import { Product } from "./useProduct";
+import { Product } from "./useProductItem";
 function ProductDescription({
   product,
   isLoading,

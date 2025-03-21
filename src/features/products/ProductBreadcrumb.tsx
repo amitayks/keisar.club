@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Product } from "./useProduct";
+import { Product } from "./useProductItem";
 
 import CategoryTag from "../../ui/CategoryCard";
 

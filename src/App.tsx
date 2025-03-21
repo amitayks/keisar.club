@@ -18,6 +18,8 @@ import LazyOrderForm from "./pages/LazyPages/LazyOrderForm";
 import LazyOrderDetail from "./pages/LazyPages/LazyOrderDetail";
 import LazyPortfolioDetail from "./pages/LazyPages/LazyPortfolioDetail";
 
+import FavIcon from "./ui/FavIcon";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -32,6 +34,7 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <ScrollToTop />
+        <FavIcon />
         <Routes>
           <Route element={<AppLayout />}>
             <Route index path='/' element={<Home />} />

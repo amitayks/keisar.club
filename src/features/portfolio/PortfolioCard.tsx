@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Skeleton } from "../../ui/skeleton/Skeleton";
-import { useProductImage } from "../products/useProductImage";
+import { usePortfolioImage } from "./usePortfolioImage";
 import CategoryTag from "../../ui/CategoryCard";
 
 type Portfolio = {
@@ -14,7 +14,7 @@ type Portfolio = {
 };
 
 function PortfolioCard({ portfolio }: { portfolio: Portfolio }) {
-  const { imageData, isLoading } = useProductImage(portfolio.image);
+  const { imageData, isLoading } = usePortfolioImage(portfolio.image);
 
   return (
     <article

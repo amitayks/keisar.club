@@ -1,6 +1,6 @@
 import { Skeleton } from "../../ui/skeleton/Skeleton";
 import { formatCurrency } from "../../utils/helpers";
-import { Product } from "./useProduct";
+import { Product } from "./useProductItem";
 
 function ProductPrice({
   product,

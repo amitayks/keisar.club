@@ -7,7 +7,7 @@ const usePortfolioImage = (image: string) => {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["portfolioImage", image],
+    queryKey: ["productImage", image],
     queryFn: () => getProductImage(image),
     staleTime: 1000 * 60 * 5, // 5 minutes
     retry: 1,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useProduct, { Product } from "../features/products/useProduct";
+import useProductItem, { Product } from "../features/products/useProductItem";
 
 import { Skeleton } from "../ui/skeleton/Skeleton";
 import { Info } from "lucide-react";
@@ -38,7 +38,7 @@ const ProductDetail = () => {
     isLoadingImage,
     isLoadingImagePack,
     error,
-  }: useProductType = useProduct();
+  }: useProductType = useProductItem();
 
   useEffect(() => {
     if (image) {

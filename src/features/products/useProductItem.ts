@@ -25,7 +25,7 @@ export interface Product {
   // features: string[];
 }
 
-const useProduct = () => {
+const useProductItem = () => {
   const { SKU } = useParams<{ SKU: string }>();
 
   const {
@@ -33,12 +33,14 @@ const useProduct = () => {
     error: productError,
     isLoading: isLoadingProduct,
   } = useQuery<Product, Error>({
-    queryKey: ["product", SKU], // Include SKU for proper caching
+    queryKey: ["productItem", SKU], // Include SKU for proper caching
     queryFn: () => {
       if (!SKU) throw new Error("SKU is required");
       return getProductById(SKU);
     },
     enabled: !!SKU, // Only fetch when SKU exists
+    retry: 1,
+    staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
   // Fetch main product image
@@ -81,4 +83,4 @@ const useProduct = () => {
   };
 };
 
-export default useProduct;
+export default useProductItem;
