@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import HomeLoadingSkeleton from "../../ui/skeleton/HomeLoadingSkeleton";
+import HomeLoadingSkeleton from "../../ui/skeleton/HomePageSkeleton";
 
 const loadOrderDetail = async () => {
   const module = await import("../../pages/OrderDetail"); // Import dynamically
