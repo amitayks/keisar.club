@@ -27,13 +27,6 @@ function PortfolioSection() {
           ) : (
             <h2 className='text-3xl font-bold mb-4'>Our Portfolio</h2>
           )}
-          {isLoading ? (
-            <Skeleton className='h-6 w-full max-w-lg mx-auto' />
-          ) : (
-            <p className='text-stone-700 dark:text-stone-400 max-w-2xl mx-auto'>
-              Explore our past work and see the quality of our craftsmanship
-            </p>
-          )}
         </div>
 
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8'>

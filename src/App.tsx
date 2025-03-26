@@ -9,10 +9,10 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Portfolio from "./pages/Portfolio";
+import About from "./pages/About";
 
 import PageNotFound from "./pages/PageNotFound";
 
-import LazyAbout from "./pages/LazyPages/LazyAbout";
 import LazyContact from "./pages/LazyPages/LazyContact";
 import LazyOrderForm from "./pages/LazyPages/LazyOrderForm";
 import LazyOrderDetail from "./pages/LazyPages/LazyOrderDetail";
@@ -42,7 +42,7 @@ function App() {
             <Route path='/products/:SKU' element={<ProductDetail />} />
             <Route path='/portfolio' element={<Portfolio />} />
             <Route path='/portfolio/:SKU' element={<LazyPortfolioDetail />} />
-            <Route path='/about' element={<LazyAbout />} />
+            <Route path='/about' element={<About />} />
             <Route path='/contact' element={<LazyContact />} />
             <Route path='/order' element={<LazyOrderForm />} />
             <Route path='/order/:id' element={<LazyOrderDetail />} />
