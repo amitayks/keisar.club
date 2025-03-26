@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import PortfolioCard from "../../features/portfolio/PortfolioCard";
-import usePortfolio from "../../features/portfolio/usePortfolio";
-import { Skeleton } from "../skeleton/Skeleton";
+import PortfolioCard from "../portfolio/PortfolioCard";
+import usePortfolio from "../portfolio/usePortfolio";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
 
 function PortfolioSection() {
   const { portfolio, isLoading } = usePortfolio();

@@ -77,12 +77,7 @@ const ProductDetail = () => {
     stock: 0,
     category: [],
     longDescription: "",
-    wood: "",
-    weight: "",
-    height: "",
-    length: "",
-    width: "",
-    shipmentPrice: 0,
+    additionalInfo: [],
   };
 
   const currentProduct = product || placeholderProduct;
@@ -131,7 +126,7 @@ const ProductDetail = () => {
 
             {/* Features */}
             <ProductTable
-              product={currentProduct}
+              additionalInfo={currentProduct.additionalInfo}
               isLoading={isLoadingProduct}
             />
 

@@ -8,21 +8,15 @@ export interface Product {
   name: string;
   SKU: string;
   category: string[] | string;
-  description: string;
+  description?: string;
   price: number;
-  rating: number;
-  reviews: number;
+  rating?: number;
+  reviews?: number;
   stock: number | null;
   longDescription: string;
   image: string | null;
   imagePack: string[];
-  wood: string;
-  weight: string;
-  height: string;
-  length: string;
-  width: string;
-  shipmentPrice: number;
-  // features: string[];
+  additionalInfo: any[];
 }
 
 const useProductItem = () => {
@@ -33,12 +27,9 @@ const useProductItem = () => {
     error: productError,
     isLoading: isLoadingProduct,
   } = useQuery<Product, Error>({
-    queryKey: ["productItem", SKU], // Include SKU for proper caching
-    queryFn: () => {
-      if (!SKU) throw new Error("SKU is required");
-      return getProductById(SKU);
-    },
-    enabled: !!SKU, // Only fetch when SKU exists
+    queryKey: ["productItem", SKU],
+    queryFn: () => getProductById(SKU),
+    enabled: !!SKU,
     retry: 1,
     staleTime: 1000 * 60 * 5, // 5 minutes
   });

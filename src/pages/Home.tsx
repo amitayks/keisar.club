@@ -1,27 +1,9 @@
-import { useState, useEffect } from "react";
-import Banner from "../ui/home/Banner";
-import PortfolioSection from "../ui/home/PortfolioSection";
-import FeaturedProducts from "../ui/home/FeaturedProducts";
-import ReviewSection from "../ui/home/ReviewSection";
-import HomePageSkeleton from "../ui/skeleton/HomePageSkeleton";
+import Banner from "../features/home/Banner";
+import PortfolioSection from "../features/home/PortfolioSection";
+import FeaturedProducts from "../features/home/FeaturedProducts";
+import ReviewSection from "../features/home/ReviewSection";
 
 const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Simulate initial page load
-  useEffect(() => {
-    // Set a timeout to show skeleton for at least 800ms for better UX
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <HomePageSkeleton />;
-  }
-
   return (
     <div className='min-h-screen animate-fadeIn'>
       <Banner />

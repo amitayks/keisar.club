@@ -58,7 +58,7 @@ function ProductCard({ product }: { product: Product }) {
             className='mb-4 text-right line-clamp-2 text-stone-600 dark:text-stone-400'
             dir='rtl'
           >
-            {product.longDescription.split(" ").slice(0, 8).join(" ")}...
+            {product.longDescription?.split(" ").slice(0, 8).join(" ")}...
           </p>
 
           <div className='flex items-center justify-center mt-auto pt-4 border-t border-stone-200 dark:border-zinc-700'>

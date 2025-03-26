@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSiteImage } from "../../hooks/useSiteImages";
-import { Skeleton } from "../skeleton/Skeleton";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
 
 function Banner() {
   const { data: backgroundImage, isLoading: isLoadingBackground } =
@@ -18,8 +18,8 @@ function Banner() {
     <section
       className='bg-cover bg-center bg-no-repeat'
       style={{
-        backgroundImage: backgroundImage ? `url("${backgroundImage}")` : "none",
-        backgroundColor: isLoadingBackground ? "#1f2937" : "transparent", // Fallback dark color while loading
+        backgroundImage: `url("${backgroundImage}")`,
+        // backgroundColor: isLoadingBackground ? " dark:zinc-800" : "transparent", // Fallback dark color while loading
       }}
     >
       <div className='max-w-7xl mx-auto px-0 md:px-4'>

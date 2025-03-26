@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import useProducts from "../../features/products/useProducts";
-import ProductCard from "../../features/products/ProductCard";
-import { Skeleton } from "../skeleton/Skeleton";
+import useProducts from "../products/useProducts";
+import ProductCard from "../products/ProductCard";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
 
 function FeaturedProducts() {
   const { products, isLoading } = useProducts();

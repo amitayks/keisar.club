@@ -1,15 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../../services/apiProduct";
+import { useSearchParams } from "react-router-dom";
 
 const useProducts = () => {
+  const [searchParams] = useSearchParams();
+
+  const filterValue = searchParams.get("status");
+  const filter =
+    !filterValue || filterValue === "all"
+      ? null
+      : {
+          field: "status",
+          value: filterValue,
+        };
+
   const {
     error,
     isLoading,
     data: products = [],
   } = useQuery({
-    queryKey: ["products"],
-    queryFn: () => getProducts(),
-    staleTime: 1000 * 60 * 5, // 5 minutes
+    queryKey: ["products", filterValue],
+    queryFn: () => getProducts({ filter }),
+    staleTime: 1000 * 60 * 5,
     retry: 1,
   });
 

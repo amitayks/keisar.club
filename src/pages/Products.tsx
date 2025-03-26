@@ -7,7 +7,6 @@ import { Skeleton } from "../ui/skeleton/Skeleton";
 
 const Products = () => {
   const { products, isLoading } = useProducts();
-  const moveBack = useMoveBack();
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // Set initial load to false after component mounts
@@ -21,35 +20,11 @@ const Products = () => {
   const renderProductGrid = () => {
     if (isInitialLoad || isLoading) {
       // Return skeleton grid while loading
-      return (
-        <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          {Array(6)
-            .fill(0)
-            .map((_, index) => (
-              <ProductCardSkeleton key={index} />
-            ))}
-        </div>
-      );
+      return <ProductSkeletonGrid />;
     }
 
     if (products.length === 0) {
-      return (
-        <div className='flex flex-col items-center justify-center py-16 text-center max-w-md mx-auto'>
-          <h3 className='text-xl font-semibold text-zinc-900 dark:text-stone-200 mb-3'>
-            No products found
-          </h3>
-          <p className='text-stone-600 dark:text-stone-400 mb-6'>
-            Please try adjusting your search or filter criteria, or check back
-            later for new products.
-          </p>
-          <button
-            onClick={moveBack}
-            className='bg-indigo-600 text-white px-5 py-2 rounded-md font-medium hover:bg-indigo-700 transition-colors'
-          >
-            &larr; Go Back
-          </button>
-        </div>
-      );
+      return <NoProductFound />;
     }
 
     return (
@@ -64,7 +39,7 @@ const Products = () => {
   return (
     <div className='min-h-screen bg-white dark:bg-zinc-900'>
       {/* Filters and Search */}
-      <ProductFilters products={products} />
+      <ProductFilters />
 
       {/* Products Grid */}
       <section className='py-8 md:py-12'>
@@ -97,3 +72,37 @@ const ProductCardSkeleton = () => {
 };
 
 export default Products;
+
+function ProductSkeletonGrid() {
+  return (
+    <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+      {Array(6)
+        .fill(0)
+        .map((_, index) => (
+          <ProductCardSkeleton key={index} />
+        ))}
+    </div>
+  );
+}
+
+function NoProductFound() {
+  const moveBack = useMoveBack();
+
+  return (
+    <div className='flex flex-col items-center justify-center py-16 text-center max-w-md mx-auto'>
+      <h3 className='text-xl font-semibold text-zinc-900 dark:text-stone-200 mb-3'>
+        No products found
+      </h3>
+      <p className='text-stone-600 dark:text-stone-400 mb-6'>
+        Please try adjusting your search or filter criteria, or check back later
+        for new products.
+      </p>
+      <button
+        onClick={moveBack}
+        className='bg-indigo-600 text-white px-5 py-2 rounded-md font-medium hover:bg-indigo-700 transition-colors'
+      >
+        &larr; Go Back
+      </button>
+    </div>
+  );
+}

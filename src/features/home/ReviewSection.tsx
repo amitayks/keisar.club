@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Quote } from "lucide-react";
-import { Skeleton } from "../skeleton/Skeleton";
+import { Skeleton } from "../../ui/skeleton/Skeleton";
 import useReviews from "../../hooks/useReviews";
 
 function ReviewSection() {
