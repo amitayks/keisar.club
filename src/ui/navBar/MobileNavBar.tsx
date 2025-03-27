@@ -5,6 +5,7 @@ import Logo from "../logo/Logo";
 import { useState, useEffect } from "react";
 import MenuButton from "./MenuButton";
 import { toggleTheme } from "../../hooks/darkTheme";
+import { HEADER_LINKS } from "../../utils/constants";
 function MobileNavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const darkMode = localStorage.getItem("darkMode");
@@ -64,36 +65,15 @@ function MobileNavBar() {
         {/* Main navigation links */}
         <div className='px-4 pt-2 pb-3 flex-grow'>
           <div className='space-y-2'>
-            <HeaderTab
-              to='/'
-              className='mobile'
-              input='Home'
-              onClick={() => setIsOpen(false)}
-            />
-            <HeaderTab
-              to='/products'
-              className='mobile'
-              input='Products'
-              onClick={() => setIsOpen(false)}
-            />
-            <HeaderTab
-              to='/portfolio'
-              className='mobile'
-              input='Portfolio'
-              onClick={() => setIsOpen(false)}
-            />
-            <HeaderTab
-              to='/about'
-              className='mobile'
-              input='About'
-              onClick={() => setIsOpen(false)}
-            />
-            <HeaderTab
-              to='/contact'
-              className='mobile'
-              input='Contact'
-              onClick={() => setIsOpen(false)}
-            />
+            {HEADER_LINKS.map((link, i) => (
+              <HeaderTab
+                key={i}
+                to={link.to}
+                input={link.input}
+                className='mobile'
+                onClick={() => setIsOpen(false)}
+              />
+            ))}
           </div>
         </div>
 

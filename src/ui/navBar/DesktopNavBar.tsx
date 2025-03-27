@@ -4,6 +4,7 @@ import HeaderTab from "./HeaderTab";
 import Logo from "../logo/Logo";
 import { toggleTheme } from "../../hooks/darkTheme";
 import { useState } from "react";
+import { HEADER_LINKS } from "../../utils/constants";
 function DesktopNavBar() {
   const darkMode = localStorage.getItem("darkMode");
   const [isDarkMode, setIsDarkMode] = useState(darkMode === "true");
@@ -26,11 +27,14 @@ function DesktopNavBar() {
           </div>
 
           <div className='md:flex md:items-center md:space-x-8'>
-            <HeaderTab to='/' className='default' input='Home' />
-            <HeaderTab to='/products' className='default' input='Products' />
-            <HeaderTab to='/portfolio' className='default' input='Portfolio' />
-            <HeaderTab to='/contact' className='default' input='Contact' />
-            <HeaderTab to='/about' className='default' input='About' />
+            {HEADER_LINKS.map((link, i) => (
+              <HeaderTab
+                key={i}
+                to={link.to}
+                input={link.input}
+                className='mobile'
+              />
+            ))}
           </div>
 
           <div className='md:flex md:items-center md:space-x-6'>
