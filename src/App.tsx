@@ -46,7 +46,6 @@ function App() {
             <Route path='/contact' element={<LazyContact />} />
             <Route path='/order' element={<LazyOrderForm />} />
             <Route path='/order/:id' element={<LazyOrderDetail />} />
-            {/* <Route path='/skeleton' element={<LazyProductDetail />} /> */}
           </Route>
           <Route path='*' element={<PageNotFound />} />
         </Routes>

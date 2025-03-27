@@ -1,3 +1,4 @@
+import { HEADER_LINKS } from "../../utils/constants";
 import QuickLinkTab from "./QuickLinkTab";
 
 function QuickLinks() {
@@ -8,10 +9,9 @@ function QuickLinks() {
       </div>
 
       <ul className='flex flex-col space-y-2 mt-2'>
-        <QuickLinkTab link='/' input='Home' />
-        <QuickLinkTab link='/about' input='About Us' />
-        <QuickLinkTab link='/products' input='Products' />
-        <QuickLinkTab link='/contact' input='Contact' />
+        {HEADER_LINKS.map((link, i) => (
+          <QuickLinkTab key={i} to={link.to} input={link.input} />
+        ))}
       </ul>
     </div>
   );

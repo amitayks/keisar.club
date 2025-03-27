@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
-function QuickLinkTab({ link, input }: { link: string; input: string }) {
+function QuickLinkTab({ to, input }: { to: string; input: string }) {
   return (
     <li className='flex items-center justify-center'>
       <Link
-        to={link}
-        className=' dark:hover:text-white hover:text-zinc-600 transition-colors'
+        to={to}
+        className=' dark:hover:text-zinc-500 hover:text-zinc-600 transition-colors'
       >
         {input}
       </Link>
