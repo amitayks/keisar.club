@@ -1,29 +1,24 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import AppLayout from "./ui/AppLayout";
-import ScrollToTop from "./ui/ScrollToTop";
+import AppLayout from "./components/AppLayout";
+import ScrollToTop from "./components/ScrollToTop";
 
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import Portfolio from "./pages/Portfolio";
 import About from "./pages/About";
-
+import Contact from "./pages/Contact";
+import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
+import Portfolio from "./pages/Portfolio";
+import PortfolioDetail from "./pages/PortfolioDetail";
 
-import LazyContact from "./pages/LazyPages/LazyContact";
-import LazyOrderForm from "./pages/LazyPages/LazyOrderForm";
-import LazyOrderDetail from "./pages/LazyPages/LazyOrderDetail";
-import LazyPortfolioDetail from "./pages/LazyPages/LazyPortfolioDetail";
-
-import Favicon from "./ui/Favicon";
+import Favicon from "./components/Favicon";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 0,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 2,
     },
   },
 });
@@ -38,14 +33,10 @@ function App() {
         <Routes>
           <Route element={<AppLayout />}>
             <Route index path='/' element={<Home />} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/products/:SKU' element={<ProductDetail />} />
             <Route path='/portfolio' element={<Portfolio />} />
-            <Route path='/portfolio/:SKU' element={<LazyPortfolioDetail />} />
+            <Route path='/portfolio/:SKU' element={<PortfolioDetail />} />
             <Route path='/about' element={<About />} />
-            <Route path='/contact' element={<LazyContact />} />
-            <Route path='/order' element={<LazyOrderForm />} />
-            <Route path='/order/:id' element={<LazyOrderDetail />} />
+            <Route path='/contact' element={<Contact />} />
           </Route>
           <Route path='*' element={<PageNotFound />} />
         </Routes>

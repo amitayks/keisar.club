@@ -1,20 +1,23 @@
-import Banner from "../features/home/Banner";
-import PortfolioSection from "../features/home/PortfolioSection";
-import FeaturedProducts from "../features/home/FeaturedProducts";
-import ReviewSection from "../features/home/ReviewSection";
+// import AboutSection from "../components/AboutSection";
+import BannerSection from "../components/BannerSection";
+import FeaturedProjectsSection from "../components/FeaturedProjectsSection";
+import Skills from "../components/Skills";
 
-const Home = () => {
+function Home() {
   return (
-    <div className='min-h-screen animate-fadeIn'>
-      <Banner />
-      <PortfolioSection />
-      <div className='bg-gradient-to-b from-zinc-200 to-white dark:from-zinc-800 dark:to-zinc-900 h-20 w-full'></div>
-      <FeaturedProducts />
-      <div className='bg-gradient-to-b from-white to-zinc-200 dark:from-zinc-900 dark:to-zinc-800 h-20 w-full'></div>
-      <ReviewSection />
-      <div className='bg-gradient-to-b from-zinc-200 to-white dark:from-zinc-800 dark:to-zinc-900 h-20 w-full'></div>
+    <div className='min-h-screen bg-white dark:bg-gray-900'>
+      <BannerSection />
+
+      <Skills
+        aboutButton={true}
+        style='bg-gradient-to-tr from-gray-50 to-blue-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800'
+      />
+
+      <FeaturedProjectsSection />
+
+      {/* <AboutSection /> */}
     </div>
   );
-};
+}
 
 export default Home;

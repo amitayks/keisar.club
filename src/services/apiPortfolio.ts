@@ -1,10 +1,17 @@
 import supabase from "./supabase";
 
-export const getPortfolio = async () => {
-  const { data, error } = await supabase
-    .from("portfolio")
-    .select("*")
-    .eq("publish", true);
+interface filter {
+  field: string;
+  value: string | boolean;
+}
+
+export const getPortfolio = async ({ filter }: { filter: filter | null }) => {
+  let query = supabase.from("portfolio").select("*").eq("publish", true);
+
+  if (filter) query = query.eq(filter.field, filter.value);
+
+  const { data, error } = await query;
+
   if (error) throw error;
 
   return data;
@@ -13,8 +20,11 @@ export const getPortfolio = async () => {
 export const getPortfolioById = async (SKU: string) => {
   const { data, error } = await supabase
     .from("portfolio")
-    .select("*")
+    .select(
+      "id, SKU, title, description, longDescription, technologies, projectType, image, imagePack, additionalInfo, featured, status"
+    )
     .eq("SKU", SKU)
+    .eq("publish", true)
     .single();
   if (error) throw error;
   return data;

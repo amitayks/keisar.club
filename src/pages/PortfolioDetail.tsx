@@ -1,257 +1,183 @@
-import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Calendar, Tag, ExternalLink } from "lucide-react";
-import { Skeleton } from "../ui/skeleton/Skeleton";
-import CategoryTag from "../ui/CategoryCard";
-import usePortfolioItem from "../features/portfolio/usePortfolioItem";
-import usePortfolioImages from "../features/portfolio/usePortfolioImages";
-
-type PortfolioItemType = {
-  id: string;
-  title: string;
-  content: string;
-  description: string;
-  date: string;
-  client: string;
-  category: string[];
-  image: string;
-  SKU: string;
-  externalLink?: string;
-};
-
-type PortfolioImageType = {
-  url: string | null;
-  error: Error | null;
-  isLoading: boolean;
-};
+import { ExternalLink, Github } from "lucide-react";
+import AdditionalInfoTable from "../components/AdditionalInfoTable";
+import Breadcrumb from "../components/Breadcrumb";
+import ErrorComponent from "../components/ErrorComponent";
+import NoItemFound from "../components/NoItemFound";
+import { PortfolioDetailSkeleton } from "../components/PortfolioDetailSkeleton";
+import PortfolioImage from "../components/PortfolioImage";
+import usePortfolioItem from "../hooks/usePortfolioItem";
 
 const PortfolioDetail = () => {
-  const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  const { portfolioItem, isLoadingItem, error: itemError } = usePortfolioItem();
-
   const {
-    mainImage,
+    portfolioItem,
+    image,
     imagePack,
-    isLoadingMainImage,
+    isLoadingPortfolio,
+    isLoadingImage,
     isLoadingImagePack,
-    error: imageError,
-  } = usePortfolioImages(portfolioItem?.image || "");
+    error,
+  } = usePortfolioItem();
 
-  useEffect(() => {
-    if (mainImage) {
-      setSelectedImage(mainImage);
-    }
-  }, [mainImage]);
+  if (isLoadingPortfolio) {
+    return <PortfolioDetailSkeleton />;
+  }
 
-  // Handle errors
-  useEffect(() => {
-    if (itemError || imageError) {
-      console.error("Error loading portfolio item:", itemError || imageError);
-    }
-  }, [itemError, imageError]);
-
-  // Create placeholder data for loading state
-  const placeholderItem: PortfolioItemType = {
-    id: "loading",
-    title: "",
-    content: "",
-    description: "",
-    date: "",
-    client: "",
-    category: [],
-    image: "",
-    SKU: "",
-  };
-
-  const currentItem = portfolioItem || placeholderItem;
+  if (!portfolioItem) {
+    return <NoItemFound />;
+  }
+  if (error) {
+    return (
+      <ErrorComponent
+        message={`Failed to load portfolio item '${portfolioItem?.SKU}'`}
+        details={
+          error?.message ||
+          "The portfolio item could not be retrieved. Please try again."
+        }
+        showRetry={true}
+        onRetry={() => window.location.reload()}
+        showNavigation={true}
+        fullPage={true}
+      />
+    );
+  }
 
   return (
-    <div className='dark:bg-zinc-900 dark:text-white min-h-screen' dir='rtl'>
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
-        {/* Breadcrumb */}
-        <nav
-          className='flex items-center justify-between text-sm font-medium mb-8'
-          dir='ltr'
-        >
-          <Link
-            to='/portfolio'
-            className='hover:text-gray-900 dark:hover:text-white flex items-center'
-          >
-            <ArrowLeft className='h-4 w-4 mr-1' />
-            Back to Portfolio
-          </Link>
-          {isLoadingItem ? (
-            <Skeleton className='h-6 w-24' />
-          ) : (
-            <CategoryTag cat={currentItem.category} type='detail' />
-          )}
-        </nav>
+    <div className='min-h-screen bg-white dark:bg-gray-900'>
+      {/* Breadcrumb */}
+      <Breadcrumb
+        projectType={portfolioItem?.projectType}
+        status={portfolioItem.status}
+      />
 
-        {/* Portfolio Details */}
-        <div className='lg:grid lg:grid-cols-2 lg:gap-x-8'>
-          {/* Portfolio Images */}
-          <div className='mb-8 lg:mb-0'>
-            {/* Main image with consistent height */}
-            <div className='aspect-square w-full relative overflow-hidden rounded-lg mb-4'>
-              <Skeleton className='absolute inset-0 w-full h-full' />
-              {!isLoadingMainImage && selectedImage && (
-                <img
-                  src={selectedImage}
-                  alt={currentItem.title}
-                  className='w-full h-full object-cover absolute inset-0 z-10'
-                  onLoad={(e) => {
-                    const target = e.target as HTMLElement;
-                    target.style.opacity = "1";
-                  }}
-                  style={{ opacity: 0, transition: "opacity 0.3s ease-in-out" }}
-                />
-              )}
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12' dir='rtl'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
+          {/* Images */}
+          <PortfolioImage
+            image={image}
+            imagePack={imagePack}
+            title={portfolioItem.title}
+            isLoadingImage={isLoadingImage}
+            isLoadingImagePack={isLoadingImagePack}
+          />
+
+          {/* Project Info */}
+          <div className='space-y-8'>
+            {/* Technologies */}
+            <div className='flex justify-center'>
+              {/* <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'></h3> */}
+              <div className='flex flex-wrap gap-3 '>
+                {portfolioItem?.technologies?.map((tech, index) => (
+                  <span
+                    key={index}
+                    className='px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg text-sm font-medium '
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
 
-            {/* Thumbnail Images */}
-            <div className='grid grid-cols-4 gap-2'>
-              {isLoadingImagePack
-                ? Array(4)
-                    .fill(0)
-                    .map((_, i) => (
-                      <div
-                        key={i}
-                        className='aspect-square rounded-md overflow-hidden'
-                      >
-                        <Skeleton className='w-full h-full' />
-                      </div>
-                    ))
-                : imagePack &&
-                  imagePack.map((imageItem: PortfolioImageType, i: number) => {
-                    if (!imageItem.url) {
-                      return (
-                        <div
-                          key={i}
-                          className='aspect-square rounded-md overflow-hidden'
-                        >
-                          <Skeleton className='w-full h-full' />
-                        </div>
-                      );
-                    }
-
-                    return (
-                      <div
-                        key={i}
-                        className={`aspect-square cursor-pointer rounded-md overflow-hidden ${
-                          selectedImage === imageItem.url
-                            ? "ring-2 ring-indigo-500"
-                            : ""
-                        }`}
-                        onClick={() =>
-                          imageItem.url && setSelectedImage(imageItem.url)
-                        }
-                      >
-                        {imageItem.isLoading ? (
-                          <Skeleton className='w-full h-full' />
-                        ) : (
-                          <img
-                            src={imageItem.url}
-                            alt={`${currentItem.title} thumbnail ${i + 1}`}
-                            className='w-full h-full object-cover'
-                          />
-                        )}
-                      </div>
-                    );
-                  })}
-            </div>
-          </div>
-
-          {/* Portfolio Info */}
-          <div className='space-y-6'>
-            {/* Portfolio Title */}
+            {/* Header */}
             <div>
-              {isLoadingItem ? (
-                <Skeleton className='h-10 w-3/4 mb-2' />
-              ) : (
-                <h1 className='text-3xl font-extrabold text-zinc-900 dark:text-stone-200 mb-2'>
-                  {currentItem.title}
-                </h1>
-              )}
+              <h1 className='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
+                {portfolioItem.title}
+              </h1>
+              <p className='text-xl text-gray-600 dark:text-gray-400 leading-relaxed'>
+                {portfolioItem.description}
+              </p>
+            </div>
 
-              {/* Client & Date */}
-              <div className='flex flex-wrap gap-4 text-stone-600 dark:text-stone-400 mb-4'>
-                {isLoadingItem ? (
-                  <>
-                    <Skeleton className='h-6 w-32' />
-                    <Skeleton className='h-6 w-40' />
-                  </>
-                ) : (
-                  <>
-                    {currentItem.client && (
-                      <div className='flex items-center'>
-                        <Tag className='h-4 w-4 mr-2' />
-                        <span>{currentItem.client}</span>
-                      </div>
-                    )}
-                    {currentItem.date && (
-                      <div className='flex items-center'>
-                        <Calendar className='h-4 w-4 mr-2' />
-                        <span>{currentItem.date}</span>
-                      </div>
-                    )}
-                  </>
+            {/* Project Meta */}
+            {/* <div className='grid grid-cols-3 sm:grid-cols-3 gap-6 ' dir='ltr'>
+              <div className='flex items-center text-gray-600 dark:text-gray-400'>
+                <Calendar className='w-5 h-5 mr-3' />
+                <div>
+                  <div className='text-sm'>Completed</div>
+                  <div className='font-medium text-gray-900 dark:text-white'>
+                    {new Date().toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {
+                <div className='flex items-center text-gray-600 dark:text-gray-400'>
+                  <User className='w-5 h-5 mr-3' />
+                  <div>
+                    <div className='text-sm'>Client</div>
+                    <div className='font-medium text-gray-900 dark:text-white'>
+                      Hidden
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <div className='flex items-center text-gray-600 dark:text-gray-400'>
+                <Clock className='w-5 h-5 mr-3' />
+                <div>
+                  <div className='text-sm'>Status</div>
+                  <div
+                    className={`font-medium capitalize ${
+                      portfolioItem?.status === "completed"
+                        ? "text-green-600 dark:text-green-400"
+                        : portfolioItem?.status === "in-progress"
+                        ? "text-yellow-600 dark:text-yellow-400"
+                        : "text-gray-600 dark:text-gray-400"
+                    }`}
+                  >
+                    {portfolioItem?.status?.replace("-", " ")}
+                  </div>
+                </div>
+              </div>
+            </div> */}
+
+            {/* Links */}
+            {(portfolioItem?.githubLink || portfolioItem?.liveLink) && (
+              <div className='flex gap-4'>
+                {portfolioItem.githubLink && (
+                  <a
+                    href={portfolioItem?.githubLink}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='inline-flex items-center px-6 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors'
+                  >
+                    <Github className='w-5 h-5 mr-2' />
+                    View Code
+                  </a>
+                )}
+                {portfolioItem?.liveLink && (
+                  <a
+                    href={portfolioItem?.liveLink}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors'
+                  >
+                    <ExternalLink className='w-5 h-5 mr-2' />
+                    View Live
+                  </a>
                 )}
               </div>
-            </div>
+            )}
 
-            {/* Description */}
+            {/* Detailed Description */}
             <div>
-              <h2 className='text-lg font-semibold text-zinc-900 dark:text-stone-200 mb-2'>
-                תיאור הפרויקט
-              </h2>
-              {isLoadingItem ? (
-                <div className='space-y-2'>
-                  <Skeleton className='h-4 w-full' />
-                  <Skeleton className='h-4 w-5/6' />
-                  <Skeleton className='h-4 w-4/6' />
-                </div>
-              ) : (
-                <p className='text-stone-600 dark:text-stone-400'>
-                  {currentItem.description}
+              <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
+                על הפרוייקט
+              </h3>
+              <div className='prose prose-gray dark:prose-invert max-w-none'>
+                <p className='text-gray-600 dark:text-gray-400 leading-relaxed'>
+                  {portfolioItem?.longDescription}
                 </p>
-              )}
-            </div>
-
-            {/* Content */}
-            <div>
-              <h2 className='text-lg font-semibold text-zinc-900 dark:text-stone-200 mb-2'>
-                פרטים נוספים
-              </h2>
-              {isLoadingItem ? (
-                <div className='space-y-2'>
-                  <Skeleton className='h-4 w-full' />
-                  <Skeleton className='h-4 w-5/6' />
-                  <Skeleton className='h-4 w-full' />
-                  <Skeleton className='h-4 w-4/6' />
-                </div>
-              ) : (
-                <div
-                  className='text-stone-600 dark:text-stone-400 portfolio-content'
-                  dangerouslySetInnerHTML={{ __html: currentItem.content }}
-                />
-              )}
-            </div>
-
-            {/* External Link */}
-            {!isLoadingItem && currentItem.externalLink && (
-              <div className='pt-6 border-t border-stone-200 dark:border-stone-700'>
-                <a
-                  href={currentItem.externalLink}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-700 transition-colors'
-                >
-                  View Project
-                  <ExternalLink className='h-5 w-5 ml-2' />
-                </a>
               </div>
+            </div>
+
+            {/* Additional Info */}
+            {portfolioItem?.additionalInfo?.length > 0 && (
+              <AdditionalInfoTable
+                additionalInfo={portfolioItem.additionalInfo}
+              />
             )}
           </div>
         </div>
