@@ -19,18 +19,32 @@ export const PERSONAL_INFO = {
   title: " Developer & Craftsman",
   tagline: "'The balance between the physical and the virtual worlds'",
   bio: "A showcase of my journey through digital and handcrafted creations.",
+  profileImage: "profile-image-banner.jpg",
+  profileImage2: "profile-image-banner-2.jpg",
   email: "amiteyk3@gmail.com",
   phone: "+972-526-471-797",
   whatsapp: "https://wa.me/972526471797",
   github: "https://github.com/amitayks",
   linkedin: "https://linkedin.com/in/amitaykeisar",
-  profileImage: "profile-image-banner.jpg",
-  profileImage2: "profile-image-banner-2.jpg",
   instagram: "https://instagram.com/amitay.ks",
   facebook:
     "https://www.facebook.com/profile.php?id=100086721472400&mibextid=ZbWKwL",
   x: "https://x.com/AmKeisar",
 };
+
+export const SOCIAL_LINKS = [
+  { label: "github", value: "https://github.com/amitayks" },
+  { label: "instagram", value: "https://instagram.com/amitay.ks" },
+  { label: "x", value: "https://x.com/AmKeisar" },
+  // {
+  //   label: "facebook",
+  //   value:
+  //     "https://www.facebook.com/profile.php?id=100086721472400&mibextid=ZbWKwL",
+  // },
+  { label: "whatsapp", value: "+972-526-471-797" },
+  { label: "phone", value: "972526471797" },
+  { label: "email", value: "amiteyk3@gmail.com" },
+];
 
 export const SKILLS = [
   {

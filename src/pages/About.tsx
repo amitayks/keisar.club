@@ -3,7 +3,8 @@ import CTASection from "../components/CTASection";
 import ExperienceSection from "../components/ExperienceSection";
 import Skills from "../components/Skills";
 import { useSiteImage } from "../hooks/useSiteImages";
-import { PERSONAL_INFO } from "../utils/constants";
+import { PERSONAL_INFO, SOCIAL_LINKS } from "../utils/constants";
+import SocialLinksComponent from "../components/SocialLinksComponent";
 
 const About = () => {
   const { image } = useSiteImage(PERSONAL_INFO.profileImage);
@@ -14,16 +15,31 @@ const About = () => {
       <section className='relative bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900  dark:to-gray-800 overflow-hidden'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20'>
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-            <div>
-              <h1 className='text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6'>
+            <div className='flex flex-col'>
+              <h1 className=' flex justify-center text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6'>
                 About {PERSONAL_INFO.name}
               </h1>
-              <p className='text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed'>
+              {/* <p className='flex justify-end text-xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed'>
                 {PERSONAL_INFO.bio}
-              </p>
+              </p> */}
 
               {/* Social Links */}
-              <div className='flex gap-4'>
+              <div className='md:block hidden'>
+                <SocialLinksComponent
+                  socialLinks={SOCIAL_LINKS}
+                  variant='filled'
+                  showLabels
+                />
+              </div>
+              <div className='md:hidden'>
+                <SocialLinksComponent
+                  socialLinks={SOCIAL_LINKS}
+                  variant='filled'
+                  size='md'
+                  // showLabels
+                />
+              </div>
+              {/* <div className='flex gap-4'>
                 <a
                   href={PERSONAL_INFO.github}
                   target='_blank'
@@ -48,7 +64,7 @@ const About = () => {
                 >
                   <Mail className='w-6 h-6' />
                 </a>
-              </div>
+              </div> */}
             </div>
 
             <div className='relative'>

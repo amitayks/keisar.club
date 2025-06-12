@@ -11,7 +11,12 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import { EMAILJS_CONFIG, PERSONAL_INFO } from "../utils/constants";
+import {
+  EMAILJS_CONFIG,
+  PERSONAL_INFO,
+  SOCIAL_LINKS,
+} from "../utils/constants";
+import SocialLinksComponent from "../components/SocialLinksComponent";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -226,47 +231,12 @@ const Contact = () => {
             </div>
 
             {/* Social Links */}
-            <div className='flex items-center md:justify-normal justify-center'>
-              <div className=' pt-8 border-t border-gray-200 dark:border-gray-700'>
-                <h3 className='text-lg font-semibold flex md:justify-normal justify-center  text-gray-900 dark:text-white mb-4'>
-                  Connect on Social Media
-                </h3>
-                <div className='flex space-x-4'>
-                  <a
-                    href={PERSONAL_INFO.github}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='p-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'
-                  >
-                    <Github className='w-6 h-6 text-gray-700 dark:text-gray-300' />
-                  </a>
-                  <a
-                    href={PERSONAL_INFO.linkedin}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='p-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'
-                  >
-                    <Linkedin className='w-6 h-6 text-gray-700 dark:text-gray-300' />
-                  </a>
-                  <a
-                    href={PERSONAL_INFO.instagram}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='p-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'
-                  >
-                    <InstagramIcon className='w-6 h-6 text-gray-700 dark:text-gray-300' />
-                  </a>
-                  <a
-                    href={PERSONAL_INFO.facebook}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='p-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors'
-                  >
-                    <Facebook className='w-6 h-6 text-gray-700 dark:text-gray-300' />
-                  </a>
-                </div>
-              </div>
-            </div>
+            <SocialLinksComponent
+              socialLinks={SOCIAL_LINKS}
+              variant='filled'
+              size='lg'
+              className='flex items-center md:justify-normal justify-center'
+            />
           </div>
 
           {/* Contact Form */}

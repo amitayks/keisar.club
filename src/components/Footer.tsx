@@ -1,6 +1,6 @@
-import SocialLinks from "./SocialLinks";
-import { PERSONAL_INFO } from "../utils/constants";
+import { PERSONAL_INFO, SOCIAL_LINKS } from "../utils/constants";
 import Logo from "./Logo";
+import SocialLinksComponent from "./SocialLinksComponent";
 
 const Footer = () => {
   return (
@@ -24,9 +24,12 @@ const Footer = () => {
             <p className='text-gray-600 dark:text-gray-400 mb-6 max-w-md leading-relaxed'>
               {PERSONAL_INFO.tagline}
             </p>
-
-            {/* Social Links */}
-            <SocialLinks />
+            <SocialLinksComponent
+              socialLinks={SOCIAL_LINKS}
+              variant='outline'
+              // showLabels={true}
+              size='lg'
+            />
           </div>
         </div>
 

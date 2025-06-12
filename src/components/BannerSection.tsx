@@ -1,7 +1,8 @@
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-import { PERSONAL_INFO } from "../utils/constants";
+import { PERSONAL_INFO, SOCIAL_LINKS } from "../utils/constants";
 import { Link } from "react-router-dom";
 import { useSiteImage } from "../hooks/useSiteImages";
+import SocialLinksComponent from "./SocialLinksComponent";
 
 function BannerSection() {
   const { image } = useSiteImage(PERSONAL_INFO.profileImage2);
@@ -72,29 +73,22 @@ function BannerSection() {
             </div>
 
             {/* Social Links */}
-            <div className='absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex gap-4'>
-              <a
-                href={PERSONAL_INFO.github}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 border border-gray-100 dark:border-gray-700'
-              >
-                <Github className='w-6 h-6' />
-              </a>
-              <a
-                href={PERSONAL_INFO.linkedin}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 border border-gray-100 dark:border-gray-700'
-              >
-                <Linkedin className='w-6 h-6' />
-              </a>
-              <a
-                href={`mailto:${PERSONAL_INFO.email}`}
-                className='p-3 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 border border-gray-100 dark:border-gray-700'
-              >
-                <Mail className='w-6 h-6' />
-              </a>
+            <div className='md:hidden'>
+              <SocialLinksComponent
+                socialLinks={SOCIAL_LINKS}
+                variant='filled'
+                orientation='vertical'
+                className='absolute -bottom-0  right-12 transform  -translate-y-2 flex  '
+              />
+            </div>
+            <div className='md:block hidden'>
+              <SocialLinksComponent
+                socialLinks={SOCIAL_LINKS}
+                variant='filled'
+                orientation='vertical'
+                size='lg'
+                className='absolute -bottom-0 right-12 transform -translate-x-2/4 -translate-y-2 flex gap-4 '
+              />
             </div>
           </div>
         </div>
