@@ -32,10 +32,12 @@ const usePortfolioItem = () => {
   });
 
   const imagePackQueries = useQueries({
-    queries: (portfolioItem?.imagePack || []).map((image: string) => ({
-      queryKey: ["portfolioImage", image],
-      queryFn: () => getPortfolioImage(image),
-    })),
+    queries: (portfolioItem?.imagePack.slice(0, 4) || []).map(
+      (image: string) => ({
+        queryKey: ["portfolioImage", image],
+        queryFn: () => getPortfolioImage(image),
+      })
+    ),
   });
 
   const imagePack = imagePackQueries.map((query) => ({

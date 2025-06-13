@@ -123,7 +123,7 @@ export const education = [
   },
   {
     title: "High School",
-    subtitle: "Adar Religious High School (תיכון דתי אדר)",
+    subtitle: "High School (תיכון דתי אדר)",
     period: "2016 - 2020",
     description:
       "Completed comprehensive secondary education at Adar Religious High School, developing strong analytical and communication skills while maintaining academic excellence in a structured learning environment.",
