@@ -13,10 +13,8 @@ function NavigationBar() {
     localStorage.getItem("darkMode") === "true"
   );
 
-  // Custom hook to detect screen size
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  // Handle body scroll lock when mobile menu is open
   useEffect(() => {
     if (isOpen && isMobile) {
       document.body.style.overflow = "hidden";
@@ -28,7 +26,6 @@ function NavigationBar() {
     };
   }, [isOpen, isMobile]);
 
-  // Close mobile menu when switching to desktop
   useEffect(() => {
     if (!isMobile && isOpen) {
       setIsOpen(false);
@@ -43,23 +40,22 @@ function NavigationBar() {
   return (
     <nav className='bg-white dark:bg-gray-900 shadow-sm border-b border-gray-100 dark:border-gray-800'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex justify-between h-16'>
-          {/* Logo */}
-          <div className='flex items-center'>
-            <Link to='/' className='flex-shrink-0 flex items-center group'>
-              <Logo
-                width={32}
-                height={32}
-                fill={isDarkMode ? "white" : "black"}
-                style={{ transform: "scaleX(-1)" }}
-              />
-              <span className='ml-3 text-xl font-bold text-gray-900 dark:text-white'>
-                Keisar Club
-              </span>
-            </Link>
-          </div>
+        <div className='flex justify-between items-center h-16'>
+          <Link to='/' className='flex-shrink-0 flex items-center group'>
+            <Logo
+              width={32}
+              height={32}
+              fill={isDarkMode ? "white" : "black"}
+              style={{ transform: "scaleX(-1)" }}
+            />
+          </Link>
 
-          {/* Desktop Navigation */}
+          {isMobile && (
+            <span className='ml-3 text-xl font-bold text-gray-900 dark:text-white'>
+              Keisar Club
+            </span>
+          )}
+
           {!isMobile && (
             <>
               <div className='flex items-center space-x-8'>
@@ -87,7 +83,6 @@ function NavigationBar() {
             </>
           )}
 
-          {/* Mobile Menu Button */}
           {isMobile && (
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -104,7 +99,6 @@ function NavigationBar() {
         </div>
       </div>
 
-      {/* Mobile Slide-in Menu */}
       {isMobile && (
         <div className='mobile-menu-content'>
           <div
@@ -112,13 +106,12 @@ function NavigationBar() {
               isOpen ? " visible opacity-100" : "invisible opacity-0"
             }`}
             style={{
-              top: "64px", // Start below the navbar
+              top: "64px",
               borderBottomLeftRadius: "20px",
               borderBottomRightRadius: "20px",
             }}
           >
-            {/* Main Navigation Links - Centered */}
-            <div className=' py-10'>
+            <div className='pb-10'>
               <div className='space-y-3 flex flex-col items-center'>
                 {HEADER_LINKS.map((link, i) => (
                   <div
@@ -128,7 +121,6 @@ function NavigationBar() {
                         ? "translate-y-4 visible"
                         : "translate-y-0 invisible"
                     }`}
-                    // style={{ transitionDelay: `${i * 100}ms` }}
                   >
                     <HeaderTab
                       to={link.to}
@@ -142,10 +134,8 @@ function NavigationBar() {
               </div>
             </div>
 
-            {/* Divider */}
             <div className='mx-6 border-t border-gray-200 dark:border-gray-700'></div>
 
-            {/* Theme Toggle - Centered */}
             <div className='px-6 py-6 rounded-b-2xl'>
               <div className='flex justify-center'>
                 <button
@@ -168,7 +158,6 @@ function NavigationBar() {
             </div>
           </div>
 
-          {/* Overlay */}
           {isOpen && (
             <div
               className='fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-1000 ease-in-out'
