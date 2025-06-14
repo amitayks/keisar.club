@@ -15,7 +15,7 @@ const Footer = () => {
             className='text-gray-900 dark:text-white'
             style={{ transform: "scaleX(-1)" }}
           />
-          <span className='ml-3 text-xl font-bold text-gray-900 dark:text-white'>
+          <span className='ml-3 text-xl font-bold text-gray-900 dark:text-white aspect-'>
             {PERSONAL_INFO.name}
           </span>
         </div>

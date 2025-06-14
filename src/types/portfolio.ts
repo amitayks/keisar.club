@@ -1,6 +1,6 @@
 export interface portfolioItemSettings {
   imageAspect: "squere";
-  dir: "rtl" | "lrt";
+  dir: "rtl" | "ltr";
 }
 export interface PortfolioItem {
   id: string;

@@ -6,6 +6,7 @@ import NoItemFound from "../components/NoItemFound";
 import { PortfolioDetailSkeleton } from "../components/PortfolioDetailSkeleton";
 import PortfolioImage from "../components/PortfolioImage";
 import usePortfolioItem from "../hooks/usePortfolioItem";
+import ExpandTableText from "../components/ExpandTableText";
 
 const PortfolioDetail = () => {
   const {
@@ -63,9 +64,13 @@ const PortfolioDetail = () => {
 
           {/* Project Info */}
           <div className='space-y-8' dir={portfolioItem.settings.dir}>
+            <div>
+              <h1 className='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
+                {portfolioItem.title}
+              </h1>
+            </div>
             {/* Technologies */}
-            <div className='flex justify-center'>
-              {/* <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'></h3> */}
+            <div className='flex '>
               <div className='flex flex-wrap gap-3 '>
                 {portfolioItem?.technologies?.map((tech, index) => (
                   <span
@@ -80,9 +85,6 @@ const PortfolioDetail = () => {
 
             {/* Header */}
             <div>
-              <h1 className='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
-                {portfolioItem.title}
-              </h1>
               <p className='text-xl text-gray-600 dark:text-gray-400 leading-relaxed'>
                 {portfolioItem.description}
               </p>
@@ -169,7 +171,15 @@ const PortfolioDetail = () => {
               </h3>
               <div className='prose prose-gray dark:prose-invert max-w-none'>
                 <p className='text-gray-600 dark:text-gray-400 leading-relaxed'>
-                  {portfolioItem?.longDescription}
+                  <ExpandTableText
+                    readMoreText={
+                      portfolioItem.settings.dir === "rtl"
+                        ? "קרא עוד"
+                        : "Read More"
+                    }
+                  >
+                    {portfolioItem?.longDescription}
+                  </ExpandTableText>
                 </p>
               </div>
             </div>
