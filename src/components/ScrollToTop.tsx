@@ -1,30 +1,74 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useLocation, useNavigationType } from "react-router-dom";
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
+  // NavigationType can be "POP" (back/forward), "PUSH" (new navigation), or "REPLACE"
+  const navigationType = useNavigationType();
+  const prevPathname = useRef<string>();
 
   useEffect(() => {
+    // Set scroll restoration to manual once
     if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual"; // Set once
+      window.history.scrollRestoration = "manual";
     }
+  }, []);
 
-    const savedScrollY = sessionStorage.getItem("scrollPosition");
-    if (savedScrollY && window.history.state?.preserveScroll) {
-      window.scrollTo(0, parseInt(savedScrollY, 10)); // Restore scroll
-    } else {
-      window.scrollTo(0, 0); // Scroll to top on new page
-    }
-  }, [pathname]);
-
-  // Preserve scroll position when navigating back
   useEffect(() => {
+    // Save scroll position before navigating away
     const saveScrollPosition = () => {
-      sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+      if (prevPathname.current) {
+        sessionStorage.setItem(
+          `scrollPos-${prevPathname.current}`,
+          window.scrollY.toString()
+        );
+      }
     };
 
-    window.addEventListener("popstate", saveScrollPosition); // Save on back/forward
-    return () => window.removeEventListener("popstate", saveScrollPosition);
+    // Save scroll position whenever pathname is about to change
+    if (prevPathname.current && prevPathname.current !== pathname) {
+      saveScrollPosition();
+    }
+
+    // Check if we should preserve scroll (from React Router state)
+    const shouldPreserveScroll = state?.preserveScroll;
+
+    // Try to restore scroll position for this path
+    const savedScrollY = sessionStorage.getItem(`scrollPos-${pathname}`);
+
+    if (shouldPreserveScroll && savedScrollY) {
+      // Restore saved position
+      window.scrollTo(0, parseInt(savedScrollY, 10));
+    } else if (savedScrollY && navigationType === "POP") {
+      // User pressed back/forward button - restore position
+      // Small delay to ensure content is rendered
+      setTimeout(() => {
+        window.scrollTo(0, parseInt(savedScrollY, 10));
+      }, 0);
+    } else {
+      // New navigation - scroll to top
+      window.scrollTo(0, 0);
+    }
+
+    // Update previous pathname
+    prevPathname.current = pathname;
+  }, [pathname, state, navigationType]);
+
+  // Save scroll position before unload
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (prevPathname.current) {
+        sessionStorage.setItem(
+          `scrollPos-${prevPathname.current}`,
+          window.scrollY.toString()
+        );
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   return null;

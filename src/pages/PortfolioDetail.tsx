@@ -44,7 +44,6 @@ const PortfolioDetail = () => {
 
   return (
     <div className='min-h-screen bg-white dark:bg-gray-900'>
-      {/* Breadcrumb */}
       <Breadcrumb
         projectType={portfolioItem?.projectType}
         status={portfolioItem.status}
@@ -52,7 +51,6 @@ const PortfolioDetail = () => {
 
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12' dir='rtl'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
-          {/* Images */}
           <PortfolioImage
             imageAspect={portfolioItem.settings?.imageAspect}
             image={image}
@@ -62,14 +60,13 @@ const PortfolioDetail = () => {
             isLoadingImagePack={isLoadingImagePack}
           />
 
-          {/* Project Info */}
           <div className='space-y-8' dir={portfolioItem.settings.dir}>
             <div>
               <h1 className='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
                 {portfolioItem.title}
               </h1>
             </div>
-            {/* Technologies */}
+
             <div className='flex '>
               <div className='flex flex-wrap gap-3 '>
                 {portfolioItem?.technologies?.map((tech, index) => (
@@ -83,7 +80,6 @@ const PortfolioDetail = () => {
               </div>
             </div>
 
-            {/* Header */}
             <div>
               <p className='text-xl text-gray-600 dark:text-gray-400 leading-relaxed'>
                 {portfolioItem.description}
@@ -136,7 +132,6 @@ const PortfolioDetail = () => {
               </div>
             </div> */}
 
-            {/* Links */}
             {(portfolioItem?.githubLink || portfolioItem?.liveLink) && (
               <div className='flex gap-4'>
                 {portfolioItem.githubLink && (
@@ -164,7 +159,6 @@ const PortfolioDetail = () => {
               </div>
             )}
 
-            {/* Detailed Description */}
             <div>
               <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
                 {portfolioItem.settings.dir === "rtl"
@@ -186,7 +180,6 @@ const PortfolioDetail = () => {
               </div>
             </div>
 
-            {/* Additional Info */}
             {portfolioItem?.additionalInfo?.length > 0 && (
               <AdditionalInfoTable
                 additionalInfo={portfolioItem.additionalInfo}

@@ -19,11 +19,7 @@ const PortfolioCard = ({
     <article
       className={`group relative bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-transparent ${style} `}
     >
-      <Link
-        to={`/portfolio/${portfolioItem.SKU}`}
-        state={{ preserveScroll: true }}
-        className='block'
-      >
+      <Link to={`/portfolio/${portfolioItem.SKU}`} className='block'>
         {/* Image */}
         <div className='aspect-square w-full relative overflow-hidden'>
           <div className='aspect-square bg-gray-200 dark:bg-gray-700' />
