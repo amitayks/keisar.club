@@ -76,7 +76,7 @@ const PortfolioCard = ({
             {/* Technologies */}
             {portfolioItem.technologies && (
               <div className='md:flex flex-wrap justify-evenly gap-2 border-t border-stone-200 dark:border-zinc-700 hidden'>
-                {portfolioItem.technologies.slice(0, 3).map((tech, index) => (
+                {portfolioItem.technologies.slice(0, 2).map((tech, index) => (
                   <span
                     key={index}
                     className='px-2 py-1 my-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-s rounded-md'

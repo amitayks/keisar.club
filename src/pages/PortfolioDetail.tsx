@@ -173,6 +173,7 @@ const PortfolioDetail = () => {
                         ? "קרא עוד"
                         : "Read More"
                     }
+                    maxLength={100}
                   >
                     {portfolioItem?.longDescription}
                   </ExpandTableText>

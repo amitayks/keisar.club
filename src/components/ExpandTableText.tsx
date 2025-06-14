@@ -12,7 +12,7 @@ const ExpandTableText = ({
   children,
   maxLength = 200,
   className = "",
-  borderColor = "border-indigo-200 dark:border-indigo-800",
+  borderColor = "border-indigo-200 dark:border-indigo-900",
   readMoreText = "Read More",
 }: ExpandTableTextProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -47,7 +47,7 @@ const ExpandTableText = ({
       onClick={handleClick}
       className={`
         cursor-pointer p-6 rounded-xl border-2 transition-all duration-300 transform 
-        ${`${borderColor} bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 hover:shadow-md `}
+        ${`${borderColor} bg-gradient-to-tr from-gray-50 to-gray-100 dark:from-gray-800 dark:via-gray-800 dark:to-gray-700 hover:shadow-md `}
         
         ${className}
       `}
@@ -70,7 +70,7 @@ const ExpandTableText = ({
           {!isExpanded && (
             <>
               <span>... </span>
-              <span className='text-indigo-600 dark:text-indigo-400 font-medium'>
+              <span className='text-indigo-600 dark:text-indigo-500 font-medium'>
                 {readMoreText}
               </span>
             </>
