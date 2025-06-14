@@ -51,9 +51,11 @@ function NavigationBar() {
           </Link>
 
           {isMobile && (
-            <span className='ml-3 text-xl font-bold text-gray-900 dark:text-white'>
-              Keisar Club
-            </span>
+            <Link to='/'>
+              <span className='ml-3 text-xl font-bold text-gray-900 dark:text-white'>
+                Keisar Club
+              </span>
+            </Link>
           )}
 
           {!isMobile && (
