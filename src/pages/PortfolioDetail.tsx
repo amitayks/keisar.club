@@ -53,6 +53,7 @@ const PortfolioDetail = () => {
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12'>
           {/* Images */}
           <PortfolioImage
+            imageAspect={portfolioItem.settings?.imageAspect}
             image={image}
             imagePack={imagePack}
             title={portfolioItem.title}
@@ -61,7 +62,7 @@ const PortfolioDetail = () => {
           />
 
           {/* Project Info */}
-          <div className='space-y-8'>
+          <div className='space-y-8' dir={portfolioItem.settings.dir}>
             {/* Technologies */}
             <div className='flex justify-center'>
               {/* <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'></h3> */}

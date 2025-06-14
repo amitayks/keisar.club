@@ -11,6 +11,7 @@ interface ImageProps {
   title: PortfolioItem["title"];
   image: PortfolioItem["image"] | null;
   imagePack: ImagePackItem[];
+  imageAspect: string;
   isLoadingImage: boolean;
   isLoadingImagePack: boolean;
 }
@@ -19,6 +20,7 @@ function PortfolioImage({
   title,
   image,
   imagePack,
+  imageAspect,
   isLoadingImage,
   isLoadingImagePack,
 }: ImageProps) {
@@ -33,8 +35,12 @@ function PortfolioImage({
   return (
     <div className='space-y-6'>
       {/* Main Image */}
-      <div className='aspect-square w-full relative overflow-hidden rounded-lg mb-4'>
-        <Skeleton className='absolute inset-0 w-full h-full' />
+      <div
+        className={`aspect-${imageAspect} w-full relative overflow-hidden rounded-lg mb-4`}
+      >
+        {isLoadingImage && (
+          <Skeleton className='absolute inset-0 w-full h-full ' />
+        )}
         {!isLoadingImage && selectedImage && (
           <img
             src={selectedImage}

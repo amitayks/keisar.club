@@ -1,3 +1,7 @@
+export interface portfolioItemSettings {
+  imageAspect: "squere";
+  dir: "rtl" | "lrt";
+}
 export interface PortfolioItem {
   id: string;
   SKU: string;
@@ -18,6 +22,7 @@ export interface PortfolioItem {
   }>;
   featured: boolean;
   status: "completed" | "in-progress" | "concept";
+  settings: portfolioItemSettings;
 }
 
 export interface PersonalInfo {

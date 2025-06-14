@@ -26,10 +26,7 @@ function Portfolio() {
         ) : portfolioItems.length === 0 ? (
           <NoProjectsFound />
         ) : (
-          <div
-            className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8'
-            dir='rtl'
-          >
+          <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8'>
             {portfolioItems.map((portfolioItem: PortfolioItem) => (
               <PortfolioCard
                 key={portfolioItem.id}
@@ -56,7 +53,7 @@ const PortfolioGridSkeleton = () => {
             key={index}
             className='bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700 animate-pulse'
           >
-            <div className='aspect-[4/3] bg-gray-200 dark:bg-gray-700' />
+            <div className='aspect-[4/4] bg-gray-200 dark:bg-gray-700' />
             <div className='p-6'>
               <div className='flex items-center justify-between mb-3'>
                 <div className='h-6 w-20 bg-gray-200 dark:bg-gray-700 rounded-full' />
