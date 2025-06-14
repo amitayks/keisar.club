@@ -1,10 +1,12 @@
+import { Briefcase, Home, Mail, User } from "lucide-react";
+
 export const PAGE_SIZE = 6;
 
 export const HEADER_LINKS = [
-  { to: "/", input: "Home" },
-  { to: "/portfolio", input: "Portfolio" },
-  { to: "/about", input: "About" },
-  { to: "/contact", input: "Contact" },
+  { to: "/", input: "Home", icon: Home },
+  { to: "/portfolio", input: "Portfolio", icon: Briefcase },
+  { to: "/about", input: "About", icon: User },
+  { to: "/contact", input: "Contact", icon: Mail },
 ];
 
 export const PROJECT_TYPES = [

@@ -4,7 +4,7 @@ const styles = {
   default:
     "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-lg font-medium transition-colors relative",
   mobile:
-    "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-lg font-medium transition-colors block w-full text-left",
+    "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-4 rounded-lg font-medium transition-colors block flex justify-center",
 };
 
 function HeaderTab({
@@ -15,7 +15,7 @@ function HeaderTab({
   icon: Icon,
 }: {
   to: string;
-  input: string;
+  input?: string;
   className: keyof typeof styles;
   onClick?: () => void;
   icon?: React.ElementType;
