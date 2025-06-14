@@ -167,7 +167,9 @@ const PortfolioDetail = () => {
             {/* Detailed Description */}
             <div>
               <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
-                על הפרוייקט
+                {portfolioItem.settings.dir === "rtl"
+                  ? "על הפרוייקט"
+                  : "About The Project"}
               </h3>
               <div className='prose prose-gray dark:prose-invert max-w-none'>
                 <p className='text-gray-600 dark:text-gray-400 leading-relaxed'>
