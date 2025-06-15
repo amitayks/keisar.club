@@ -12,7 +12,6 @@ function BannerSection() {
       <div className='absolute inset-0 bg-grid-pattern opacity-5' />
       <div className='relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-32'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-          {/* Content */}
           <div className='text-center lg:text-left px-6'>
             <div className='inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm font-medium mb-6'>
               <span className='w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse' />
@@ -53,8 +52,8 @@ function BannerSection() {
             </div>
           </div>
 
-          <div className='relative'>
-            <div className='relative w-80 h-80 mx-auto lg:w-96 lg:h-96'>
+          <div className='relative flex items-center justify-center'>
+            <div className='relative w-80 h-80 lg:w-96 lg:h-96'>
               <div className='absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-3xl rotate-6 opacity-20' />
               <div className='absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl -rotate-6 opacity-20' />
 
@@ -70,22 +69,26 @@ function BannerSection() {
               />
             </div>
 
-            <div className='md:hidden'>
-              <SocialLinksComponent
-                socialLinks={SOCIAL_LINKS}
-                variant='filled'
-                orientation='vertical'
-                className='absolute -bottom-0  right-12 transform  -translate-y-2 flex  '
-              />
-            </div>
-            <div className='md:block hidden'>
-              <SocialLinksComponent
-                socialLinks={SOCIAL_LINKS}
-                variant='filled'
-                orientation='vertical'
-                size='lg'
-                className='absolute -bottom-0 right-12 transform -translate-x-2/4 -translate-y-2 flex gap-4 '
-              />
+            <div className='absolute -right-[-3rem] top-1/2 -translate-y-1/2 md:-right-[-10rem] lg:-right-[-4rem] '>
+              <div className='md:hidden'>
+                <SocialLinksComponent
+                  socialLinks={SOCIAL_LINKS}
+                  variant='filled'
+                  orientation='vertical'
+                  size='md'
+                  className='flex flex-col gap-2'
+                />
+              </div>
+
+              <div className='hidden md:block'>
+                <SocialLinksComponent
+                  socialLinks={SOCIAL_LINKS}
+                  variant='filled'
+                  orientation='vertical'
+                  size='lg'
+                  className='flex flex-col gap-4'
+                />
+              </div>
             </div>
           </div>
         </div>
