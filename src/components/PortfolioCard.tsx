@@ -1,8 +1,7 @@
-import { Calendar, ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import { usePortfolioImage } from "../hooks/usePortfolioImage";
 import { PortfolioItem } from "../types/portfolio";
-import { projectTypeColors } from "../utils/constants";
 
 const PortfolioCard = ({
   portfolioItem,

@@ -6,7 +6,7 @@ import usePortfolioItems from "../hooks/usePortfolioItems";
 import { PortfolioItem } from "../types/portfolio";
 
 function Portfolio() {
-  const { portfolioItems, isLoading, portfolioError } = usePortfolioItems();
+  const { portfolioItems, isLoading } = usePortfolioItems();
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
