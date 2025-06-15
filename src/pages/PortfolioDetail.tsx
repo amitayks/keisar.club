@@ -86,52 +86,6 @@ const PortfolioDetail = () => {
               </p>
             </div>
 
-            {/* Project Meta */}
-            {/* <div className='grid grid-cols-3 sm:grid-cols-3 gap-6 ' dir='ltr'>
-              <div className='flex items-center text-gray-600 dark:text-gray-400'>
-                <Calendar className='w-5 h-5 mr-3' />
-                <div>
-                  <div className='text-sm'>Completed</div>
-                  <div className='font-medium text-gray-900 dark:text-white'>
-                    {new Date().toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              {
-                <div className='flex items-center text-gray-600 dark:text-gray-400'>
-                  <User className='w-5 h-5 mr-3' />
-                  <div>
-                    <div className='text-sm'>Client</div>
-                    <div className='font-medium text-gray-900 dark:text-white'>
-                      Hidden
-                    </div>
-                  </div>
-                </div>
-              }
-
-              <div className='flex items-center text-gray-600 dark:text-gray-400'>
-                <Clock className='w-5 h-5 mr-3' />
-                <div>
-                  <div className='text-sm'>Status</div>
-                  <div
-                    className={`font-medium capitalize ${
-                      portfolioItem?.status === "completed"
-                        ? "text-green-600 dark:text-green-400"
-                        : portfolioItem?.status === "in-progress"
-                        ? "text-yellow-600 dark:text-yellow-400"
-                        : "text-gray-600 dark:text-gray-400"
-                    }`}
-                  >
-                    {portfolioItem?.status?.replace("-", " ")}
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
             {(portfolioItem?.githubLink || portfolioItem?.liveLink) && (
               <div className='flex gap-4'>
                 {portfolioItem.githubLink && (

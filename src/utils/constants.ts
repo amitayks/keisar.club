@@ -13,7 +13,7 @@ export const PROJECT_TYPES = [
   { value: "all", label: "All" },
   { value: "Wood-Working", label: "Wood Working" },
   { value: "Web-Development", label: "Web Dev" },
-  { value: "Design", label: "Design" },
+  // { value: "Design", label: "Design" },
 ];
 
 export const PERSONAL_INFO = {
@@ -38,11 +38,6 @@ export const SOCIAL_LINKS = [
   { label: "github", value: "https://github.com/amitayks" },
   { label: "instagram", value: "https://instagram.com/amitay.ks" },
   { label: "x", value: "https://x.com/AmKeisar" },
-  // {
-  //   label: "facebook",
-  //   value:
-  //     "https://www.facebook.com/profile.php?id=100086721472400&mibextid=ZbWKwL",
-  // },
   { label: "whatsapp", value: "+972-526-471-797" },
   { label: "phone", value: "972526471797" },
   { label: "email", value: "amiteyk3@gmail.com" },
@@ -84,7 +79,7 @@ export const SKILLS = [
   },
 ];
 
-export const experience = [
+export const EXPERIENCE = [
   {
     title: "Independent Woodworker & Laser Cutting Specialist",
     subtitle: "Keisar Club - Self-Employed",
@@ -108,7 +103,7 @@ export const experience = [
   },
 ];
 
-export const education = [
+export const EDUCATION = [
   {
     title: "Full-Stack Web Development - React & TypeScript",
     subtitle: "Udemy",
@@ -132,7 +127,7 @@ export const education = [
   },
 ];
 
-export const projectTypeColors = {
+export const PROJECT_TYPE_COLOR = {
   "Wood-Working":
     "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
   "Web-Development":

@@ -36,7 +36,6 @@ function HeaderTab({
       <div className='flex items-center'>
         {Icon && <Icon className='h-5 w-5 mr-3' />}
         {input}
-        {/* Active indicator for desktop */}
         {isActive && className === "default" && (
           <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 dark:bg-blue-400 rounded-full' />
         )}

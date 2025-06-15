@@ -1,4 +1,3 @@
-// import AboutSection from "../components/AboutSection";
 import BannerSection from "../components/BannerSection";
 import FeaturedProjectsSection from "../components/FeaturedProjectsSection";
 import Skills from "../components/Skills";
@@ -14,8 +13,6 @@ function Home() {
       />
 
       <FeaturedProjectsSection />
-
-      {/* <AboutSection /> */}
     </div>
   );
 }

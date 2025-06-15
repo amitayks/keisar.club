@@ -1,4 +1,4 @@
-import { education, experience } from "../utils/constants";
+import { EDUCATION, EXPERIENCE } from "../utils/constants";
 import TimelineSection from "./TimelineSection";
 
 function ExperienceSection({ style }: { style: string }) {
@@ -10,14 +10,14 @@ function ExperienceSection({ style }: { style: string }) {
             title='Education'
             icon='graduation'
             iconColor='text-purple-600 dark:text-purple-400'
-            items={education}
+            items={EDUCATION}
             type='education'
           />
           <TimelineSection
             title='Experience'
             icon='briefcase'
             iconColor='text-blue-600 dark:text-blue-400'
-            items={experience}
+            items={EXPERIENCE}
             type='experience'
           />
         </div>

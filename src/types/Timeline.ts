@@ -6,7 +6,6 @@ export interface TimelineItem {
 }
 
 export type IconType = "graduation" | "briefcase";
-
 export type TimelineType = "education" | "experience";
 
 export interface TimelineSectionProps {

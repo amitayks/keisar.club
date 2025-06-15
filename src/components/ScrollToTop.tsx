@@ -8,7 +8,6 @@ const ScrollToTop = () => {
   const prevPathname = useRef<string>();
 
   useEffect(() => {
-    // Set scroll restoration to manual once
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }

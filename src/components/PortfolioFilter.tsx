@@ -15,7 +15,6 @@ function PortfolioFilter({ style }: { style: string }) {
     <div className={`${style}`}>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6'>
         <div className='flex items-center justify-center'>
-          {/* Project Type Filter */}
           <div className='flex items-center gap-2 overflow-x-auto pb-1 md:pb-0'>
             <Filter className='h-5 w-5 text-gray-400 flex-shrink-0' />
             <div className='flex gap-2 '>

@@ -76,31 +76,6 @@ const ExpandTableText = ({
             </>
           )}
         </p>
-
-        {/* Expand/Collapse Indicator */}
-        {/* <div
-          className={`
-          absolute -top-2 -right-2 w-6 h-6 rounded-full 
-          ${
-            isExpanded
-              ? "bg-indigo-500 text-white"
-              : "bg-gray-300 dark:bg-gray-600 text-gray-600 dark:text-gray-300"
-          }
-          flex items-center justify-center text-xs font-bold
-          transition-all duration-300 transform
-          ${isExpanded ? "rotate-180" : "rotate-0"}
-        `}
-        >
-          {isExpanded ? "−" : "+"}
-        </div> */}
-
-        {/* {isExpanded && (
-          <div className='mt-3 pt-3 border-t border-indigo-200 dark:border-indigo-700'>
-            <span className='text-sm text-indigo-600 dark:text-indigo-400 font-medium'>
-              ✓ Click anywhere to collapse
-            </span>
-          </div>
-        )} */}
       </div>
     </div>
   );

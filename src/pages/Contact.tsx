@@ -1,22 +1,12 @@
-import {
-  AlertCircle,
-  Clock,
-  Facebook,
-  Github,
-  InstagramIcon,
-  Linkedin,
-  Mail,
-  Phone,
-  Send,
-} from "lucide-react";
-import React, { useState } from "react";
 import emailjs from "emailjs-com";
+import { AlertCircle, Clock, Mail, Phone, Send } from "lucide-react";
+import React, { useState } from "react";
+import SocialLinksComponent from "../components/SocialLinksComponent";
 import {
   EMAILJS_CONFIG,
   PERSONAL_INFO,
   SOCIAL_LINKS,
 } from "../utils/constants";
-import SocialLinksComponent from "../components/SocialLinksComponent";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -125,7 +115,7 @@ const Contact = () => {
           `New ${formData.projectType || "contact"} inquiry`,
         message: formData.message,
         project_type: formData.projectType,
-        to_email: PERSONAL_INFO.email, // Your email
+        to_email: PERSONAL_INFO.email,
       };
 
       await emailjs.send(
@@ -179,7 +169,6 @@ const Contact = () => {
               </p>
             </div>
 
-            {/* Contact Methods */}
             <div className='space-y-6'>
               <div className='flex items-start space-x-4'>
                 <div className='flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center'>
@@ -230,7 +219,6 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Social Links */}
             <SocialLinksComponent
               socialLinks={SOCIAL_LINKS}
               variant='filled'
@@ -239,7 +227,6 @@ const Contact = () => {
             />
           </div>
 
-          {/* Contact Form */}
           <div className='bg-gray-50 dark:bg-gray-800 rounded-2xl p-8'>
             <h2 className='text-2xl font-bold text-gray-900 dark:text-white mb-6'>
               Send a Message

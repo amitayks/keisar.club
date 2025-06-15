@@ -198,34 +198,3 @@ const SocialLinksComponent = ({
 };
 
 export default SocialLinksComponent;
-
-// Example usage:
-/*
-const socialLinksData: SocialLink[] = [
-  { label: "github", value: "https://github.com/amitayks", ariaLabel: "GitHub Profile" },
-  { label: "linkedin", value: "https://linkedin.com/in/amitaykeisar" },
-  { label: "email", value: "amiteyk3@gmail.com" },
-  { label: "whatsapp", value: "https://wa.me/972526471797" },
-  { label: "instagram", value: "https://instagram.com/amitay.ks" },
-  { label: "facebook", value: "https://www.facebook.com/profile.php?id=100086721472400" },
-];
-
-// Basic usage
-<SocialLinksComponent socialLinks={socialLinksData} />
-
-// Filled variant with labels
-<SocialLinksComponent 
-  socialLinks={socialLinksData} 
-  variant="filled" 
-  showLabels={true}
-  size="lg"
-/>
-
-// Vertical orientation with custom styling
-<SocialLinksComponent 
-  socialLinks={socialLinksData} 
-  orientation="vertical"
-  className="bg-gray-50 p-4 rounded-lg"
-  linkClassName="hover:scale-110"
-/>
-*/

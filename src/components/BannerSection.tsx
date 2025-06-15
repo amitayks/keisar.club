@@ -1,7 +1,7 @@
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-import { PERSONAL_INFO, SOCIAL_LINKS } from "../utils/constants";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteImage } from "../hooks/useSiteImages";
+import { PERSONAL_INFO, SOCIAL_LINKS } from "../utils/constants";
 import SocialLinksComponent from "./SocialLinksComponent";
 
 function BannerSection() {
@@ -36,7 +36,6 @@ function BannerSection() {
               {PERSONAL_INFO.bio}
             </p>
 
-            {/* CTA Buttons */}
             <div className='flex flex-col sm:flex-row gap-4 justify-center lg:justify-start'>
               <Link
                 to='/portfolio'
@@ -54,7 +53,6 @@ function BannerSection() {
             </div>
           </div>
 
-          {/* Profile Image */}
           <div className='relative'>
             <div className='relative w-80 h-80 mx-auto lg:w-96 lg:h-96'>
               <div className='absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-3xl rotate-6 opacity-20' />
@@ -72,7 +70,6 @@ function BannerSection() {
               />
             </div>
 
-            {/* Social Links */}
             <div className='md:hidden'>
               <SocialLinksComponent
                 socialLinks={SOCIAL_LINKS}

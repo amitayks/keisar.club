@@ -7,9 +7,6 @@ interface AdditionalInfoTableProps {
 function AdditionalInfoTable({ additionalInfo }: AdditionalInfoTableProps) {
   return (
     <div>
-      {/* <h3 className='text-lg font-semibold text-gray-900 dark:text-white mb-4'>
-                    מידע נוסף
-                  </h3> */}
       <div className='space-y-3'>
         {additionalInfo.map((info, index) => (
           <div

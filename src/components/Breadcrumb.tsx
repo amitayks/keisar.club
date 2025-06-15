@@ -1,20 +1,15 @@
 import { ArrowLeft } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PortfolioItem } from "../types/portfolio";
-import { projectTypeColors } from "../utils/constants";
+import { PROJECT_TYPE_COLOR } from "../utils/constants";
 
 interface BreadcrumbProps {
   projectType: PortfolioItem["projectType"];
   status: PortfolioItem["status"];
 }
 
-function Breadcrumb({ projectType, status }: BreadcrumbProps) {
+function Breadcrumb({ projectType }: BreadcrumbProps) {
   const navigate = useNavigate();
-  // const statusColors = {
-  //   completed: "text-green-600 dark:text-green-400",
-  //   "in-progress": "text-yellow-600 dark:text-yellow-400",
-  //   concept: "text-gray-600 dark:text-gray-400",
-  // };
 
   return (
     <div className='bg-gray-50 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700'>
@@ -28,13 +23,8 @@ function Breadcrumb({ projectType, status }: BreadcrumbProps) {
             Go Back
           </button>
           <div className=''>
-            {/* <span
-              className={`font-medium capitalize ${statusColors[status]} mr-2`}
-            >
-              {status?.replace("-", " ")}
-            </span> */}
             <span
-              className={`px-3 py-2 rounded-full text-sm font-medium ${projectTypeColors[projectType]}`}
+              className={`px-3 py-2 rounded-full text-sm font-medium ${PROJECT_TYPE_COLOR[projectType]}`}
             >
               {projectType?.replace("-", " ")}
             </span>

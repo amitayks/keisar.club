@@ -55,7 +55,6 @@ function PortfolioImage({
         )}
       </div>
 
-      {/* Thumbnail Images */}
       <div className='grid grid-cols-4 gap-2'>
         {isLoadingImagePack
           ? Array(4)

@@ -16,10 +16,6 @@ function Skills({
           <h2 className='text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4'>
             {`< Skills & Expertise />`}
           </h2>
-          {/* <p className='text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto'>
-            A diverse skill set spanning traditional craftsmanship and modern
-            technology
-          </p> */}
         </div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>

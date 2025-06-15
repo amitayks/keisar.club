@@ -51,7 +51,6 @@ const ErrorComponent = ({
   return (
     <div className={containerClasses}>
       <div className='text-center max-w-md mx-auto'>
-        {/* Error Icon */}
         <div className='flex justify-center mb-4'>
           <div className='inline-flex items-center justify-center rounded-full bg-red-100 dark:bg-red-900/20 p-3'>
             <AlertTriangle
@@ -61,21 +60,18 @@ const ErrorComponent = ({
           </div>
         </div>
 
-        {/* Error Title */}
         <h3
           className={`${config.title} font-semibold text-zinc-900 dark:text-stone-200 mb-2`}
         >
           Error
         </h3>
 
-        {/* Error Message */}
         <p
           className={`${config.message} text-stone-600 dark:text-stone-400 mb-4`}
         >
           {message}
         </p>
 
-        {/* Error Details */}
         {details && (
           <div className='bg-red-50 dark:bg-red-900/10 border border-red-200 dark:border-red-800 rounded-md p-3 mb-4'>
             <p className='text-sm text-red-700 dark:text-red-300 font-mono'>
@@ -84,9 +80,7 @@ const ErrorComponent = ({
           </div>
         )}
 
-        {/* Action Buttons */}
         <div className='flex flex-col sm:flex-row gap-3 justify-center'>
-          {/* Retry Button */}
           {showRetry && onRetry && (
             <button
               onClick={onRetry}
@@ -97,7 +91,6 @@ const ErrorComponent = ({
             </button>
           )}
 
-          {/* Custom Action Button */}
           {actionText && onAction && (
             <button
               onClick={onAction}
@@ -107,7 +100,6 @@ const ErrorComponent = ({
             </button>
           )}
 
-          {/* Navigation Buttons */}
           {showNavigation && (
             <>
               <button
@@ -129,7 +121,6 @@ const ErrorComponent = ({
           )}
         </div>
 
-        {/* Contact Support Link */}
         {fullPage && (
           <p className='mt-6 text-sm text-stone-500 dark:text-stone-400'>
             If this problem persists, please{" "}
