@@ -27,7 +27,7 @@ export const PERSONAL_INFO = {
   phone: "+972-526-471-797",
   whatsapp: "https://wa.me/972526471797",
   github: "https://github.com/amitayks",
-  linkedin: "https://linkedin.com/in/amitaykeisar",
+  // linkedin: "https://linkedin.com/in/amitaykeisar",
   instagram: "https://instagram.com/amitay.ks",
   facebook:
     "https://www.facebook.com/profile.php?id=100086721472400&mibextid=ZbWKwL",
