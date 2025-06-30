@@ -31,7 +31,7 @@ export const PERSONAL_INFO = {
   instagram: "https://instagram.com/amitay.ks",
   facebook: "https://www.facebook.com/profile.php?id=100086721472400&mibextid=ZbWKwL",
   x: "https://x.com/AmKeisar",
-};
+} as const;
 
 export const SOCIAL_LINKS = [
   { label: "github", value: "https://github.com/amitayks" },

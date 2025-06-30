@@ -33,10 +33,11 @@ const About = () => {
 
             <div className="relative">
               <div className="relative w-80 h-80 mx-auto lg:w-96 lg:h-96">
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-3xl rotate-6 opacity-20" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-3xl rotate-6 animate-pulse-20" />
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl -rotate-6 animate-pulse-20 " />
                 <img
                   src={image}
-                  alt={PERSONAL_INFO.name}
+                  alt={image}
                   className="relative w-full h-full object-cover rounded-3xl shadow-2xl inset-0"
                   onLoad={(e) => {
                     const target = e.target as HTMLElement;
