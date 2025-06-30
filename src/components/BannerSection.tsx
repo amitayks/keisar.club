@@ -54,8 +54,8 @@ function BannerSection() {
 
           <div className='relative flex items-center justify-center'>
             <div className='relative w-80 h-80 lg:w-96 lg:h-96'>
-              <div className='absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-3xl rotate-6 opacity-20' />
-              <div className='absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl -rotate-6 opacity-20' />
+              <div className='absolute inset-0 bg-gradient-to-tr from-blue-500 to-purple-600 rounded-3xl rotate-6 animate-pulse-20' />
+              <div className='absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 rounded-3xl -rotate-6 animate-pulse-20 ' />
 
               <img
                 src={image}
