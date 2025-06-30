@@ -21,23 +21,19 @@ function HeaderTab({
   icon?: React.ElementType;
 }) {
   const location = useLocation();
-  const isActive =
-    location.pathname === to ||
-    (to !== "/" && location.pathname.startsWith(to));
+  const isActive = location.pathname === to || (to !== "/" && location.pathname.startsWith(to));
 
   return (
     <Link
       to={to}
-      className={`${styles[className]} ${
-        isActive ? "text-blue-600 dark:text-blue-400" : ""
-      }`}
+      className={`${styles[className]} ${isActive ? "text-blue-600 dark:text-blue-400" : ""}`}
       onClick={onClick}
     >
-      <div className='flex items-center'>
-        {Icon && <Icon className='h-5 w-5 mr-3' />}
+      <div className="flex items-center">
+        {Icon && <Icon className="h-5 w-5 mr-3" />}
         {input}
         {isActive && className === "default" && (
-          <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 dark:bg-blue-400 rounded-full' />
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-blue-600 dark:bg-blue-400 rounded-full" />
         )}
       </div>
     </Link>

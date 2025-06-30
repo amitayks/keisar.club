@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Skeleton } from "./Skeleton";
 import { PortfolioItem } from "../types/portfolio";
+import { Skeleton } from "./Skeleton";
 
 interface ImagePackItem {
   url: string | null;
@@ -33,19 +33,15 @@ function PortfolioImage({
   }, [image]);
 
   return (
-    <div className='space-y-6'>
+    <div className="space-y-6">
       {/* Main Image */}
-      <div
-        className={`aspect-${imageAspect} w-full relative overflow-hidden rounded-lg mb-4`}
-      >
-        {isLoadingImage && (
-          <Skeleton className='absolute inset-0 w-full h-full ' />
-        )}
+      <div className={`aspect-${imageAspect} w-full relative overflow-hidden rounded-lg mb-4`}>
+        {isLoadingImage && <Skeleton className="absolute inset-0 w-full h-full " />}
         {!isLoadingImage && selectedImage && (
           <img
             src={selectedImage}
             alt={title}
-            className='w-full h-full object-cover absolute inset-0 z-10'
+            className="w-full h-full object-cover absolute inset-0 z-10"
             onLoad={(e) => {
               const target = e.target as HTMLElement;
               target.style.opacity = "1";
@@ -55,27 +51,21 @@ function PortfolioImage({
         )}
       </div>
 
-      <div className='grid grid-cols-4 gap-2'>
+      <div className="grid grid-cols-4 gap-2">
         {isLoadingImagePack
           ? Array(4)
               .fill(0)
               .map((_, i) => (
-                <div
-                  key={i}
-                  className='aspect-square rounded-md overflow-hidden'
-                >
-                  <Skeleton className='w-full h-full' />
+                <div key={i} className="aspect-square rounded-md overflow-hidden">
+                  <Skeleton className="w-full h-full" />
                 </div>
               ))
           : imagePack &&
             imagePack.map((imageItem, i) => {
               if (!imageItem.url) {
                 return (
-                  <div
-                    key={i}
-                    className='aspect-square rounded-md overflow-hidden'
-                  >
-                    <Skeleton className=' w-full h-full' />
+                  <div key={i} className="aspect-square rounded-md overflow-hidden">
+                    <Skeleton className=" w-full h-full" />
                   </div>
                 );
               }
@@ -84,21 +74,17 @@ function PortfolioImage({
                 <div
                   key={i}
                   className={`aspect-square cursor-pointer rounded-md overflow-hidden ${
-                    selectedImage === imageItem.url
-                      ? "ring-2 ring-indigo-500"
-                      : ""
+                    selectedImage === imageItem.url ? "ring-2 ring-indigo-500" : ""
                   }`}
-                  onClick={() =>
-                    imageItem.url && setSelectedImage(imageItem.url)
-                  }
+                  onClick={() => imageItem.url && setSelectedImage(imageItem.url)}
                 >
                   {imageItem.isLoading ? (
-                    <Skeleton className='absolute inset-0 w-full h-full' />
+                    <Skeleton className="absolute inset-0 w-full h-full" />
                   ) : (
                     <img
                       src={imageItem.url}
                       alt={`${name} thumbnail ${i + 1}`}
-                      className='w-full h-full object-cover'
+                      className="w-full h-full object-cover"
                       onLoad={(e) => {
                         const target = e.target as HTMLElement;
                         target.style.opacity = "1";

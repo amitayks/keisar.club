@@ -3,16 +3,14 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import AppLayout from "./components/AppLayout";
+import Favicon from "./components/Favicon";
 import ScrollToTop from "./components/ScrollToTop";
-
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Portfolio from "./pages/Portfolio";
 import PortfolioDetail from "./pages/PortfolioDetail";
-
-import Favicon from "./components/Favicon";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,13 +30,13 @@ function App() {
         <Favicon />
         <Routes>
           <Route element={<AppLayout />}>
-            <Route index path='/' element={<Home />} />
-            <Route path='/portfolio' element={<Portfolio />} />
-            <Route path='/portfolio/:SKU' element={<PortfolioDetail />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/contact' element={<Contact />} />
+            <Route index path="/" element={<Home />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/:SKU" element={<PortfolioDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
           </Route>
-          <Route path='*' element={<PageNotFound />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

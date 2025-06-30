@@ -29,8 +29,7 @@ export const PERSONAL_INFO = {
   github: "https://github.com/amitayks",
   // linkedin: "https://linkedin.com/in/amitaykeisar",
   instagram: "https://instagram.com/amitay.ks",
-  facebook:
-    "https://www.facebook.com/profile.php?id=100086721472400&mibextid=ZbWKwL",
+  facebook: "https://www.facebook.com/profile.php?id=100086721472400&mibextid=ZbWKwL",
   x: "https://x.com/AmKeisar",
 };
 
@@ -46,24 +45,12 @@ export const SOCIAL_LINKS = [
 export const SKILLS = [
   {
     category: "Web Development",
-    skills: [
-      "React + Redux",
-      "JavaScript",
-      "TypeScript",
-      "Styled components",
-      "Next.js",
-    ],
+    skills: ["React + Redux", "JavaScript", "TypeScript", "Styled components", "Next.js"],
     level: "advanced" as const,
   },
   {
     category: "Wood Working",
-    skills: [
-      "Furniture Design",
-      "Wood Turning",
-      "Joinery",
-      "Finishing",
-      "Tool Making",
-    ],
+    skills: ["Furniture Design", "Wood Turning", "Joinery", "Finishing", "Tool Making"],
     level: "expert" as const,
   },
 
@@ -128,12 +115,9 @@ export const EDUCATION = [
 ];
 
 export const PROJECT_TYPE_COLOR = {
-  "Wood-Working":
-    "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
-  "Web-Development":
-    "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
-  Design:
-    "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
+  "Wood-Working": "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
+  "Web-Development": "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+  Design: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
   Other: "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200",
 };
 

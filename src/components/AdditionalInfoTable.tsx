@@ -7,18 +7,14 @@ interface AdditionalInfoTableProps {
 function AdditionalInfoTable({ additionalInfo }: AdditionalInfoTableProps) {
   return (
     <div>
-      <div className='space-y-3'>
+      <div className="space-y-3">
         {additionalInfo.map((info, index) => (
           <div
             key={index}
-            className='flex justify-between py-2 border-b border-gray-100 dark:border-gray-800'
+            className="flex justify-between py-2 border-b border-gray-100 dark:border-gray-800"
           >
-            <span className='font-medium text-gray-700 dark:text-gray-300'>
-              {info.label}
-            </span>
-            <span className='text-gray-600 dark:text-gray-400'>
-              {info.value}
-            </span>
+            <span className="font-medium text-gray-700 dark:text-gray-300">{info.label}</span>
+            <span className="text-gray-600 dark:text-gray-400">{info.value}</span>
           </div>
         ))}
       </div>

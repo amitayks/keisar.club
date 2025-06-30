@@ -4,9 +4,9 @@ import NavigationBar from "./NavigationBar";
 
 function AppLayout() {
   return (
-    <div className='flex flex-col min-h-screen transition-colors duration-200'>
+    <div className="flex flex-col min-h-screen transition-colors duration-200">
       <NavigationBar />
-      <main className='flex-grow'>
+      <main className="flex-grow">
         <Outlet />
       </main>
       <Footer />

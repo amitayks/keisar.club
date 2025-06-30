@@ -19,25 +19,18 @@ const usePortfolioItem = () => {
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
-  const { data: image, isLoading: isLoadingImage } = useQuery<
-    string | null,
-    Error
-  >({
+  const { data: image, isLoading: isLoadingImage } = useQuery<string | null, Error>({
     queryKey: ["portfolioImage", portfolioItem?.image],
     queryFn: () =>
-      portfolioItem?.image
-        ? getPortfolioImage(portfolioItem.image)
-        : Promise.resolve(null),
+      portfolioItem?.image ? getPortfolioImage(portfolioItem.image) : Promise.resolve(null),
     enabled: !!portfolioItem?.image,
   });
 
   const imagePackQueries = useQueries({
-    queries: (portfolioItem?.imagePack?.slice(0, 4) || []).map(
-      (image: string) => ({
-        queryKey: ["portfolioImage", image],
-        queryFn: () => getPortfolioImage(image),
-      })
-    ),
+    queries: (portfolioItem?.imagePack?.slice(0, 4) || []).map((image: string) => ({
+      queryKey: ["portfolioImage", image],
+      queryFn: () => getPortfolioImage(image),
+    })),
   });
 
   const imagePack = imagePackQueries.map((query) => ({

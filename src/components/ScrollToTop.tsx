@@ -17,10 +17,7 @@ const ScrollToTop = () => {
     // Save scroll position before navigating away
     const saveScrollPosition = () => {
       if (prevPathname.current) {
-        sessionStorage.setItem(
-          `scrollPos-${prevPathname.current}`,
-          window.scrollY.toString()
-        );
+        sessionStorage.setItem(`scrollPos-${prevPathname.current}`, window.scrollY.toString());
       }
     };
 
@@ -57,10 +54,7 @@ const ScrollToTop = () => {
   useEffect(() => {
     const handleBeforeUnload = () => {
       if (prevPathname.current) {
-        sessionStorage.setItem(
-          `scrollPos-${prevPathname.current}`,
-          window.scrollY.toString()
-        );
+        sessionStorage.setItem(`scrollPos-${prevPathname.current}`, window.scrollY.toString());
       }
     };
 

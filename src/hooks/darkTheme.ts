@@ -19,9 +19,7 @@ function initializeTheme() {
   if (savedPreference !== null) {
     setTheme(savedPreference === "true");
   } else {
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     setTheme(prefersDark);
   }
 }

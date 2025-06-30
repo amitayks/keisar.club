@@ -28,9 +28,7 @@ const ExpandTableText = ({
       <div
         className={`p-4 rounded-lg border-2 ${borderColor} bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:via:gray-800 dark:to-gray-700 ${className}`}
       >
-        <p className='leading-relaxed text-gray-700 dark:text-gray-300'>
-          {children}
-        </p>
+        <p className="leading-relaxed text-gray-700 dark:text-gray-300">{children}</p>
       </div>
     );
   }
@@ -52,14 +50,12 @@ const ExpandTableText = ({
         ${className}
       `}
     >
-      <div className='relative'>
-        <p className='leading-relaxed text-gray-600 dark:text-gray-400 text-lg'>
+      <div className="relative">
+        <p className="leading-relaxed text-gray-600 dark:text-gray-400 text-lg">
           {truncatedText}
           <span
             className={`transition-all duration-500 ease-in-out ${
-              isExpanded
-                ? "opacity-100 max-h-full"
-                : "opacity-0 max-h-0 overflow-hidden"
+              isExpanded ? "opacity-100 max-h-full" : "opacity-0 max-h-0 overflow-hidden"
             }`}
             style={{
               display: isExpanded ? "inline" : "none",
@@ -70,7 +66,7 @@ const ExpandTableText = ({
           {!isExpanded && (
             <>
               <span>... </span>
-              <span className='text-indigo-600 dark:text-indigo-500 font-medium'>
+              <span className="text-indigo-600 dark:text-indigo-500 font-medium">
                 {readMoreText}
               </span>
             </>

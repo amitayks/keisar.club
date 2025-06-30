@@ -5,9 +5,7 @@ import Logo from "../components/Logo";
 export default function Favicon() {
   useEffect(() => {
     const svgString = encodeURIComponent(
-      renderToStaticMarkup(
-        <Logo fill='white' style={{ transform: "scaleX(-1)" }} />
-      )
+      renderToStaticMarkup(<Logo fill="white" style={{ transform: "scaleX(-1)" }} />)
     );
     const dataUrl = `data:image/svg+xml,${svgString}`;
 

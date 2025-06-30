@@ -72,11 +72,7 @@ const formatHref = (label: string, value: string): string => {
   const normalizedLabel = label.toLowerCase().trim();
 
   // If value already contains protocol, return as is
-  if (
-    value.startsWith("http") ||
-    value.startsWith("mailto:") ||
-    value.startsWith("tel:")
-  ) {
+  if (value.startsWith("http") || value.startsWith("mailto:") || value.startsWith("tel:")) {
     return value;
   }
 
@@ -185,9 +181,7 @@ const SocialLinksComponent = ({
             >
               {getSocialIcon(link.label, iconSize)}
               {showLabels && (
-                <span className={`${config.text} font-medium capitalize`}>
-                  {link.label}
-                </span>
+                <span className={`${config.text} font-medium capitalize`}>{link.label}</span>
               )}
             </div>
           </a>

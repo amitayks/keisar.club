@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
 import { getPortfolio } from "../services/apiPortfolio";
 import { PortfolioItem } from "../types/portfolio";
-import { useSearchParams } from "react-router-dom";
 
 export default function usePortfolioItems() {
   const [searchParams] = useSearchParams();
