@@ -159,14 +159,14 @@ const SocialLinksComponent = ({
 
   return (
     <div className={containerClasses}>
-      {socialLinks.map((link, index) => {
+      {socialLinks.map((link) => {
         const href = formatHref(link.label, link.value);
         const isExternal = href.startsWith("http");
         const iconSize = iconClassName || config.icon;
 
         return (
           <a
-            key={index}
+            key={link.value}
             href={href}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}

@@ -56,7 +56,7 @@ function PortfolioImage({
           ? Array(4)
               .fill(0)
               .map((_, i) => (
-                <div key={i} className="aspect-square rounded-md overflow-hidden">
+                <div key={`skeleton-${i + 1}`} className="aspect-square rounded-md overflow-hidden">
                   <Skeleton className="w-full h-full" />
                 </div>
               ))
@@ -64,7 +64,10 @@ function PortfolioImage({
             imagePack.map((imageItem, i) => {
               if (!imageItem.url) {
                 return (
-                  <div key={i} className="aspect-square rounded-md overflow-hidden">
+                  <div
+                    key={`${i + 1}-skeleton`}
+                    className="aspect-square rounded-md overflow-hidden"
+                  >
                     <Skeleton className=" w-full h-full" />
                   </div>
                 );
@@ -72,7 +75,7 @@ function PortfolioImage({
 
               return (
                 <div
-                  key={i}
+                  key={imageItem.url}
                   className={`aspect-square cursor-pointer rounded-md overflow-hidden ${
                     selectedImage === imageItem.url ? "ring-2 ring-indigo-500" : ""
                   }`}
