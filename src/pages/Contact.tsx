@@ -1,4 +1,4 @@
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { AlertCircle, Clock, Mail, Phone, Send } from "lucide-react";
 import React, { useState } from "react";
 import SocialLinksComponent from "../components/SocialLinksComponent";
