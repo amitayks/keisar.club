@@ -63,9 +63,9 @@ const PortfolioDetail = () => {
 
             <div className="flex ">
               <div className="flex flex-wrap gap-3 ">
-                {portfolioItem?.technologies?.map((tech, index) => (
+                {portfolioItem?.technologies?.map((tech) => (
                   <span
-                    key={index}
+                    key={portfolioItem.SKU}
                     className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-lg text-sm font-medium "
                   >
                     {tech}
