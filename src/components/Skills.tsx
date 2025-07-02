@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SKILLS } from "../utils/constants";
 
-function Skills({ style, aboutButton }: { style: string; aboutButton: boolean }) {
+function Skills({ style, aboutButton }: { style?: string; aboutButton: boolean }) {
   return (
     <section className={`py-20  ${style}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
