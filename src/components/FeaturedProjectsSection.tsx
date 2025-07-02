@@ -24,7 +24,7 @@ function FeaturedProjectsSection({ style = "" }: { style?: string }) {
               if (i >= 6) return;
               return (
                 <PortfolioCard
-                  key={i}
+                  key={featuredItem.id}
                   portfolioItem={featuredItem}
                   style={`
                     ${i >= 4 ? "hidden md:block" : ""}

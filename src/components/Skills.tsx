@@ -13,9 +13,9 @@ function Skills({ style, aboutButton }: { style?: string; aboutButton: boolean }
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {SKILLS.map((skillCategory, index) => (
+          {SKILLS.map((skillCategory) => (
             <div
-              key={index}
+              key={skillCategory.category}
               className="bg-white dark:bg-gray-900 rounded-2xl p-8 mx-10 md:mx-5 lg:mx-0 shadow-sm hover:shadow-lg transition-all duration-200 border border-gray-100 dark:border-gray-700 flex flex-col h-full"
             >
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
@@ -23,8 +23,8 @@ function Skills({ style, aboutButton }: { style?: string; aboutButton: boolean }
               </h3>
 
               <div className="space-y-2 flex-grow">
-                {skillCategory.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="flex items-center justify-between">
+                {skillCategory.skills.map((skill, i) => (
+                  <div key={skillCategory.skills[i]} className="flex items-center justify-between">
                     <span className="text-gray-600 dark:text-gray-400">{skill}</span>
                   </div>
                 ))}
