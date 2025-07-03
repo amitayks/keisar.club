@@ -11,11 +11,11 @@ function FeaturedProjectsSection({ style = "" }: { style?: string }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Featured Projects
+            {"< My Favorite />"}
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          {/* <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             A showcase of my recent work across different disciplines
-          </p>
+          </p> */}
         </div>
 
         {featuredProjects.length > 0 ? (
