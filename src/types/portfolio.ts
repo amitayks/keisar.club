@@ -18,6 +18,7 @@ export interface PortfolioItem {
     label: string;
     value: string;
   }>;
+  priority?: number;
   completionDate?: string;
   liveLink?: string;
   githubLink?: string;
