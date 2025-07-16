@@ -33,14 +33,14 @@ const PortfolioCard = ({
           )}
         </div>
 
-        <div className="px-6 py-6">
+        {/* <div className="px-6 py-6">
           <h3 className="text-lg text-center font-semibold text-gray-900 dark:text-white group-hover:text-gray-700 dark:group-hover:text-blue-200 transition-colors ">
             {portfolioItem.title}
           </h3>
-        </div>
+        </div> */}
       </Link>
 
-      <div className="absolute top-4 right-4 flex gap-2 md:opacity-0 group-hover:opacity-100 transition-opacity z-20">
+      <div className="absolute top-4 right-4 flex flex-col gap-2 z-20">
         {portfolioItem.githubLink && (
           <a
             href={portfolioItem?.githubLink}
