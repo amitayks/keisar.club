@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Portfolio from "./pages/Portfolio";
 import PortfolioDetail from "./pages/PortfolioDetail";
+import VisaraPrivacyPolicy from "./pages/VIsaraPrivacyPolicy";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,6 +36,7 @@ function App() {
             <Route path="/portfolio/:SKU" element={<PortfolioDetail />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/visara-privacy-policy" element={<VisaraPrivacyPolicy />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
